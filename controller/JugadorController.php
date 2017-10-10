@@ -38,64 +38,89 @@ class JugadorController extends SecuredController
 
     public function createJugador()
     {
-      $sesion=SecuredController::getUser();
-      $equipoModel = new EquipoModel();
-      $equipos = $equipoModel->getEquipos();
-      $this->view->mostrarCrearJugador($equipos, $sesion);
+        $sesion=SecuredController::getUser();
+        if ($sesion!==false) {
+          $equipoModel = new EquipoModel();
+          $equipos = $equipoModel->getEquipos();
+          $this->view->mostrarCrearJugador($equipos, $sesion);
+        }else
+        {
+            header('Location: ' . LOGIN);
+        }
     }
 
   public function storeJugador()
   {
-    $id_equipo =$_POST['id_equipo'];
-    $nombre =$_POST['nombre'];
-    $apellido =$_POST['apellido'];
-    $posicion =$_POST['posicion'];
-    $numero =$_POST['numero'];
-    $edad =$_POST['edad'];
-    $altura =$_POST['altura'];
-    $peso =$_POST['peso'];
-    $universidad =$_POST['universidad'];
-    $salario =$_POST['salario'];
+      $sesion=SecuredController::getUser();
+      if ($sesion!==false) {
+        $id_equipo =$_POST['id_equipo'];
+        $nombre =$_POST['nombre'];
+        $apellido =$_POST['apellido'];
+        $posicion =$_POST['posicion'];
+        $numero =$_POST['numero'];
+        $edad =$_POST['edad'];
+        $altura =$_POST['altura'];
+        $peso =$_POST['peso'];
+        $universidad =$_POST['universidad'];
+        $salario =$_POST['salario'];
 
-    $this->model->crearJugador($id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario);
-    header('Location: '.JUGADORES);
+        $this->model->crearJugador($id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario);
+        header('Location: '.JUGADORES);
+      }else
+    {
+    header('Location: ' . LOGIN);
+    }
 
   }
 
   public function destroyJugador($params)
   {
-    $id = $params[0];
-    $this->model->borrarJugador($id);
-    header('Location: '.JUGADORES);
+      $sesion=SecuredController::getUser();
+      if ($sesion!==false) {
+        $id = $params[0];
+        $this->model->borrarJugador($id);
+        header('Location: '.JUGADORES);
+      }else
+      {
+          header('Location: ' . LOGIN);
+      }
   }
 
   public function editJugador($params){
-    $equipoModel = new EquipoModel();
-    $equipos = $equipoModel->getEquipos();
-    $sesion=SecuredController::getUser();
-    $id = $params[0];
-    $jugador = $this->model->getJugador($id);
-    $this->view->mostrarEditJugador($jugador, $equipos, $sesion);
-    // $this->updateJugador();
-
+      $sesion=SecuredController::getUser();
+      if ($sesion!==false) {
+        $equipoModel = new EquipoModel();
+        $equipos = $equipoModel->getEquipos();
+        $sesion=SecuredController::getUser();
+        $id = $params[0];
+        $jugador = $this->model->getJugador($id);
+        $this->view->mostrarEditJugador($jugador, $equipos, $sesion);
+        // $this->updateJugador();
+      }else{
+          header('Location: ' . LOGIN);
+      }
 
     }
 
   public function updateJugador(){
-
-      $id =$_GET['id'];
-      $id_equipo =$_GET['id_equipo'];
-      $nombre =$_GET['nombre'];
-      $apellido =$_GET['apellido'];
-      $posicion =$_GET['posicion'];
-      $numero =$_GET['numero'];
-      $edad =$_GET['edad'];
-      $altura =$_GET['altura'];
-      $peso =$_GET['peso'];
-      $universidad =$_GET['universidad'];
-      $salario =$_GET['salario'];
-    $this->model->actualizaJugador($id_equipo, $nombre, $apellido, $posicion, $numero, $edad, $altura, $peso, $universidad, $salario,$id);
-    header('Location: '.JUGADORES);
+      $sesion=SecuredController::getUser();
+      if ($sesion!==false) {
+          $id =$_GET['id'];
+          $id_equipo =$_GET['id_equipo'];
+          $nombre =$_GET['nombre'];
+          $apellido =$_GET['apellido'];
+          $posicion =$_GET['posicion'];
+          $numero =$_GET['numero'];
+          $edad =$_GET['edad'];
+          $altura =$_GET['altura'];
+          $peso =$_GET['peso'];
+          $universidad =$_GET['universidad'];
+          $salario =$_GET['salario'];
+        $this->model->actualizaJugador($id_equipo, $nombre, $apellido, $posicion, $numero, $edad, $altura, $peso, $universidad, $salario,$id);
+        header('Location: '.JUGADORES);
+      }else{
+          header('Location: ' . LOGIN);
+      }
   }
 
 

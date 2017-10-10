@@ -41,62 +41,87 @@ class EquipoController extends SecuredController
   public function createForm()
   {
       $sesion=SecuredController::getUser();
-    $this->view->mostrarCrearEquipoForm($sesion);
+   if ($sesion!==false) {
+       $this->view->mostrarCrearEquipoForm($sesion);
+   }
+   else{
+       header('Location: '.LOGIN);
+   }
   }
 
   //Funcion para guardar un equipo
   public function store()
   {
-    $equipo = $_POST['equipo'];
-    $nom_corto = $_POST['nom_corto'];
-    $ganados = $_POST['ganados'];
-    $perdidos = $_POST['perdidos'];
-    $porcentaje = $_POST['porcentaje'];
-    $dif_partido = $_POST['dif_partido'];
-    $conferencia = $_POST['conferencia'];
+    $sesion=SecuredController::getUser();
+    if ($sesion!==false) {
+        $equipo = $_POST['equipo'];
+        $nom_corto = $_POST['nom_corto'];
+        $ganados = $_POST['ganados'];
+        $perdidos = $_POST['perdidos'];
+        $porcentaje = $_POST['porcentaje'];
+        $dif_partido = $_POST['dif_partido'];
+        $conferencia = $_POST['conferencia'];
 
-    if(isset($_POST['equipo']) && !empty($_POST['equipo'])){
-      $this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
-      header('Location: '.HOME);
+        if(isset($_POST['equipo']) && !empty($_POST['equipo'])){
+          $this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
+          header('Location: '.HOME);
+        }
+        else{
+          $this->view->errorCrear("El campo nombre del equip es requerido es requerido", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
+        }
     }
     else{
-      $this->view->errorCrear("El campo nombre del equip es requerido es requerido", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
+        header('Location: '.LOGIN);
     }
   }
 
   //funcion para eliminar un equipo
   public function destroy($params)
   {
-    $id_equipo = $params[0];
-    $this->model->borrarEquipo($id_equipo);
-    header('Location: '.equipo);
+      $sesion=SecuredController::getUser();
+      if ($sesion!==false) {
+          $id_equipo = $params[0];
+          $this->model->borrarEquipo($id_equipo);
+          header('Location: ' . equipo);
+      }else{
+          header('Location: '.LOGIN);
+      }
   }
 
 //Funcion para mostrar el formulario de edicion de equipo
   public function EditEquipo($params){
       $id_equipo = $params[0];
       $sesion=SecuredController::getUser();
-      $equipo=$this->model->verEquipo($id_equipo);
-      $this->view->editFormEquipoForm($equipo,$sesion);
-
-
+      if ($sesion!==false) {
+          $equipo = $this->model->verEquipo($id_equipo);
+          $this->view->editFormEquipoForm($equipo, $sesion);
+      }else
+          {
+          header('Location: ' . LOGIN);
+      }
   }
 
 
     public function updateEquipo()
     {
-        $id = $_GET['id'];
-        $equipo = $_GET['equipo'];
-        $nom_corto = $_GET['nom_corto'];
-        $ganados = $_GET['ganados'];
-        $perdidos = $_GET['perdidos'];
-        $porcentaje = $_GET['porcentaje'];
-        $dif_partido = $_GET['dif_partido'];
-        $conferencia = $_GET['conferencia'];
+        $sesion=SecuredController::getUser();
+        if ($sesion!==false) {
+            $id = $_GET['id'];
+            $equipo = $_GET['equipo'];
+            $nom_corto = $_GET['nom_corto'];
+            $ganados = $_GET['ganados'];
+            $perdidos = $_GET['perdidos'];
+            $porcentaje = $_GET['porcentaje'];
+            $dif_partido = $_GET['dif_partido'];
+            $conferencia = $_GET['conferencia'];
 
-        $this->model->actualizarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$id);
-       header('Location: '.equipo);
+            $this->model->actualizarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$id);
+           header('Location: '.equipo);
 
+            }
+        else{
+        header('Location: '.LOGIN);
+    }
     }
 
 

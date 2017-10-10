@@ -13,7 +13,7 @@
         'editarEquipo'    => 'EquipoController#EditEquipo',
         'guardarEquipoEdit'   => 'EquipoController#updateEquipo',
         'borrarEquipo'    => 'EquipoController#destroy',
-        'detalleequipo'   => 'EquipoController#equipo',
+          'detalleequipo'   => 'EquipoController#equipo',
 
         'agregarJugador'  => 'JugadorController#createJugador',
         'guardarJugador'  => 'JugadorController#storeJugador',

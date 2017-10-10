@@ -20,7 +20,6 @@ class SecuredController extends Controller
   }
   public function getUser(){
       if(isset($_SESSION['USER'])) {
-       //   $var=$this->;
         return $_SESSION['USER'];
       }else{
         return false;
