@@ -1,0 +1,103 @@
+<?php
+include_once('model/jugadorModel.php');
+include_once('view/JugadorView.php');
+//define('Jugadores', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/jugadores');
+
+
+class JugadorController extends SecuredController
+{
+  // private $view;
+  // private $model;
+
+    function __construct()
+    {
+      parent::__construct();
+      $this->view = new JugadorView();
+      $this->model = new JugadorModel();
+
+
+    }
+
+    public function jugador($params){
+      $id = $params[0];
+        $sesion=SecuredController::getUser();
+      $jugador = $this->model->getJugador($id);
+      $this->view->mostrarJugador($jugador,$sesion);
+    }
+
+
+    public function jugadores()
+    {
+      $equipoModel = new EquipoModel();
+      $equipos = $equipoModel->getEquipos();
+      $jugadores = $this->model->getJugadores();
+      $sesion=SecuredController::getUser();
+      $this->view->mostrarJugadores($jugadores, $equipos, $sesion);
+    }
+
+
+    public function createJugador()
+    {
+      $sesion=SecuredController::getUser();
+      $equipoModel = new EquipoModel();
+      $equipos = $equipoModel->getEquipos();
+      $this->view->mostrarCrearJugador($equipos, $sesion);
+    }
+
+  public function storeJugador()
+  {
+    $id_equipo =$_POST['id_equipo'];
+    $nombre =$_POST['nombre'];
+    $apellido =$_POST['apellido'];
+    $posicion =$_POST['posicion'];
+    $numero =$_POST['numero'];
+    $edad =$_POST['edad'];
+    $altura =$_POST['altura'];
+    $peso =$_POST['peso'];
+    $universidad =$_POST['universidad'];
+    $salario =$_POST['salario'];
+
+    $this->model->crearJugador($id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario);
+    header('Location: '.JUGADORES);
+
+  }
+
+  public function destroyJugador($params)
+  {
+    $id = $params[0];
+    $this->model->borrarJugador($id);
+    header('Location: '.JUGADORES);
+  }
+
+  public function editJugador($params){
+    $equipoModel = new EquipoModel();
+    $equipos = $equipoModel->getEquipos();
+    $sesion=SecuredController::getUser();
+    $id = $params[0];
+    $jugador = $this->model->getJugador($id);
+    $this->view->mostrarEditJugador($jugador, $equipos, $sesion);
+    // $this->updateJugador();
+
+
+    }
+
+  public function updateJugador(){
+
+      $id =$_GET['id'];
+      $id_equipo =$_GET['id_equipo'];
+      $nombre =$_GET['nombre'];
+      $apellido =$_GET['apellido'];
+      $posicion =$_GET['posicion'];
+      $numero =$_GET['numero'];
+      $edad =$_GET['edad'];
+      $altura =$_GET['altura'];
+      $peso =$_GET['peso'];
+      $universidad =$_GET['universidad'];
+      $salario =$_GET['salario'];
+    $this->model->actualizaJugador($id_equipo, $nombre, $apellido, $posicion, $numero, $edad, $altura, $peso, $universidad, $salario,$id);
+    header('Location: '.JUGADORES);
+  }
+
+
+}
+?>
