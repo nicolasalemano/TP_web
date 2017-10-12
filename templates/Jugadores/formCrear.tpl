@@ -1,10 +1,10 @@
-{include file="header.tpl"}
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     {if isset($error) }
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
-    <form action="guardarJugador" method="post">
+    <form class="formulario" id="guardarjugador" action="guardarJugador" method="post">
       <div class="form-group">
         <label for="equipo">Equipo</label>
         <select name="id_equipo" class="form-control">
@@ -37,8 +37,8 @@
         <label for="salario">Salario</label>
         <input type="number" class="form-control" name="salario" placeholder="Salario">
       </div>
-      <button type="submit" class="btn btn-default">Guardad</button>
+      <button type="submit" class="btn btn-default ">Guardad</button>
     </form>
   </div>
 </div>
-{include file="footer.tpl"}
+

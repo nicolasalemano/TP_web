@@ -1,4 +1,4 @@
-{include file="../header.tpl"}
+
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
@@ -18,4 +18,4 @@
           </form>
         </div>
       </div>
-{include file="../footer.tpl"}
+

@@ -34,8 +34,8 @@
       <td>{$jugadores['salario']} U$D</td>
       <td>
           {if $sesion!==false}
-            <a href="borrarJugador/{$jugadores['id']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-            <a href="editarJugador/{$jugadores['id']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+            <a class="partial" href="borrarJugador/{$jugadores['id']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            <a class="partial" href="editarJugador/{$jugadores['id']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 
           {else}
 

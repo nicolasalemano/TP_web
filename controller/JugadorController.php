@@ -51,6 +51,8 @@ class JugadorController extends SecuredController
 
   public function storeJugador()
   {
+
+
       $sesion=SecuredController::getUser();
       if ($sesion!==false) {
         $id_equipo =$_POST['id_equipo'];
@@ -65,7 +67,8 @@ class JugadorController extends SecuredController
         $salario =$_POST['salario'];
 
         $this->model->crearJugador($id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario);
-        header('Location: '.JUGADORES);
+
+       header('Location: '.JUGADORES);
       }else
     {
     header('Location: ' . LOGIN);
@@ -91,7 +94,6 @@ class JugadorController extends SecuredController
       if ($sesion!==false) {
         $equipoModel = new EquipoModel();
         $equipos = $equipoModel->getEquipos();
-        $sesion=SecuredController::getUser();
         $id = $params[0];
         $jugador = $this->model->getJugador($id);
         $this->view->mostrarEditJugador($jugador, $equipos, $sesion);
@@ -105,17 +107,17 @@ class JugadorController extends SecuredController
   public function updateJugador(){
       $sesion=SecuredController::getUser();
       if ($sesion!==false) {
-          $id =$_GET['id'];
-          $id_equipo =$_GET['id_equipo'];
-          $nombre =$_GET['nombre'];
-          $apellido =$_GET['apellido'];
-          $posicion =$_GET['posicion'];
-          $numero =$_GET['numero'];
-          $edad =$_GET['edad'];
-          $altura =$_GET['altura'];
-          $peso =$_GET['peso'];
-          $universidad =$_GET['universidad'];
-          $salario =$_GET['salario'];
+          $id =$_POST['id'];
+          $id_equipo =$_POST['id_equipo'];
+          $nombre =$_POST['nombre'];
+          $apellido =$_POST['apellido'];
+          $posicion =$_POST['posicion'];
+          $numero =$_POST['numero'];
+          $edad =$_POST['edad'];
+          $altura =$_POST['altura'];
+          $peso =$_POST['peso'];
+          $universidad =$_POST['universidad'];
+          $salario =$_POST['salario'];
         $this->model->actualizaJugador($id_equipo, $nombre, $apellido, $posicion, $numero, $edad, $altura, $peso, $universidad, $salario,$id);
         header('Location: '.JUGADORES);
       }else{

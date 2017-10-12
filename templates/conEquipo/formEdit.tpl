@@ -1,12 +1,12 @@
-{include file="header.tpl"}
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     {if isset($error) }
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
-    <form action="../guardarEquipoEdit" method="get">
+    <form  class="formulario" action="guardarEquipoEdit" method="POST">
       <div class="form-group">
-{foreach from=$equipo item=equipos}
+  {foreach from=$equipo item=equipos}
         <label for="id">"{$equipos['id']}"</label>
         <input type="hidden" class="form-control" name="id"  value="{$equipos['id']}" >
         <label for="equipo">Equipo</label>
@@ -32,4 +32,4 @@
     </form>
   </div>
 </div>
-{include file="footer.tpl"}
+

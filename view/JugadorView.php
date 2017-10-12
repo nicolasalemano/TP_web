@@ -34,7 +34,7 @@ function mostrarEditJugador($jugador, $equipos, $sesion){
     $this->smarty->assign('sesion', $sesion);
   $this->smarty->assign('jugador', $jugador);
   $this->smarty->assign('equipos', $equipos);
-  $this->smarty->display('templates/Jugadores/indexJugador.tpl');
+  $this->smarty->display('templates/Jugadores/infoJugador.tpl');
 }
   function errorCrear($error, $equipo, $nom_corto, $ganados, $perdidios, $porcentaje, $dif_partido, $conferencia){
     $this->assignarJugadorForm($equipo, $nom_corto, $ganados, $perdidios, $porcentaje, $dif_partido, $conferencia);

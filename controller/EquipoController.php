@@ -15,11 +15,20 @@ class EquipoController extends SecuredController
     $this->model = new EquipoModel();
   }
 
+
+
+//funciona partioal
+  function inicio(){
+      $sesion=SecuredController::getUser();
+      $this->view->inicio($sesion);
+  }
+//funciona partial
   public function home(){
       $sesion=SecuredController::getUser();
       $this->view->mostrarHome($sesion);
   }
 
+                    //desestimada
   public function index()
   {
     $equipo = $this->model->getEquipos();
@@ -28,16 +37,17 @@ class EquipoController extends SecuredController
   }
 
   //Funcion para traer todos los equipos
+    //Funciona partial
   public function equipos()
   {
       $sesion=SecuredController::getUser();
-    //$sesion = $_SESSION['USER'];
     $equipo = $this->model->getEquipos();
     $this->view->mostrarEquipos($equipo,$sesion);
   }
 
 
 //Funcion para Mostrar el formulario para la creacion de un nuevo equipo
+
   public function createForm()
   {
       $sesion=SecuredController::getUser();
@@ -64,7 +74,7 @@ class EquipoController extends SecuredController
 
         if(isset($_POST['equipo']) && !empty($_POST['equipo'])){
           $this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
-          header('Location: '.HOME);
+          header('Location: '.EQUIPO);
         }
         else{
           $this->view->errorCrear("El campo nombre del equip es requerido es requerido", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
@@ -82,7 +92,7 @@ class EquipoController extends SecuredController
       if ($sesion!==false) {
           $id_equipo = $params[0];
           $this->model->borrarEquipo($id_equipo);
-          header('Location: ' . equipo);
+          header('Location: ' . EQUIPO);
       }else{
           header('Location: '.LOGIN);
       }
@@ -106,14 +116,14 @@ class EquipoController extends SecuredController
     {
         $sesion=SecuredController::getUser();
         if ($sesion!==false) {
-            $id = $_GET['id'];
-            $equipo = $_GET['equipo'];
-            $nom_corto = $_GET['nom_corto'];
-            $ganados = $_GET['ganados'];
-            $perdidos = $_GET['perdidos'];
-            $porcentaje = $_GET['porcentaje'];
-            $dif_partido = $_GET['dif_partido'];
-            $conferencia = $_GET['conferencia'];
+            $id = $_POST['id'];
+            $equipo = $_POST['equipo'];
+            $nom_corto = $_POST['nom_corto'];
+            $ganados = $_POST['ganados'];
+            $perdidos = $_POST['perdidos'];
+            $porcentaje = $_POST['porcentaje'];
+            $dif_partido = $_POST['dif_partido'];
+            $conferencia = $_POST['conferencia'];
 
             $this->model->actualizarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$id);
            header('Location: '.equipo);

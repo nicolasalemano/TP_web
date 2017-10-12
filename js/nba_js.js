@@ -1,43 +1,76 @@
-/*
+
 "use strict"
 
-
 $(document).ready(function (){
-    let url="HOME";
-    $.ajax({
-        url:url,
-        success:function (data) {
-            $('#cargaDiv').html(data);
-            partial();
-        },
-        error:function(){
-            $('#cargaDiv').html('<h1>Error inesperado</h1>');
-        }
+
+
+    $("body").on("click",'.partial',function (e) {
+        e.preventDefault();
+        partial(this.href);
     });
+
+
+    $("body").on("submit", 'form', function (e) {
+        e.preventDefault();
+        guardaSubmit($(this),this.action);
+
+    });
+
 });
 
-function partial(){
-    $('.partial').on('click',function(evento){
-        evento.preventDefault();
 
+function partial(url) {
 
-        let url = "/"
-        url += $(this).attr("href");
+    $.post(url, "", function (data) {
+        $('.js-carga').html("CARGANDO........................");
 
+        $('.js-carga').html(data);
+    })
+}
+function guardaSubmit(form,action) {
 
-        $.ajax({
-            url:url,
-            success:function(data){
-                $('#cargaDiv').html(data);
-                partial();
-
-            },
-            error:function(){
-                $('#cargaDiv').html('<h1>Error inesperado</h1>');
-            }
+        let serializedData = form.serialize();
+        $.post(action, serializedData,  function(response) {
+            $('.js-carga').html(response);
         });
-        $('#cargaDiv').html('Cargando.......');
-    });
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+ $("document").ready(function(){
+ renderSection("index");
+ });
+
+ $(".partial").on("click",function (e) {
+ e.preventDefault();
+ renderSection(this.name);
+ });
+
+ function renderSection(name){
+ $.post(name,"", function (response) {
+ $("#js-carga").html(response);
+
+ })
+ }
+
+
+
+
 */

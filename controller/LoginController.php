@@ -29,10 +29,11 @@ class LoginController extends Controller
             $_SESSION['USER'] = $userName;
             $_SESSION['LAST_ACTIVITY'] = time();
             define('SESION', 1);
+
             header('Location: '.HOME);
         }
         else{
-            //$this->view->mostrarLogin('Usuario o Password incorrectos');
+
         }
       }
   }

@@ -4,7 +4,7 @@ class EquipoModel extends Model
 {
 
   function getEquipos(){
-    $sentencia = $this->db->prepare( "select * from equipo");
+    $sentencia = $this->db->prepare( "select * from equipo ORDER BY id DESC ");
     $sentencia->execute();
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }

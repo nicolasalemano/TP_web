@@ -26,6 +26,12 @@ class SecuredController extends Controller
       }
   }
 
+    public function verify(){
+        if(!isset($_SESSION['USER'])) {
+            header('Location: ' . LOGIN);
+            die();
+        }
+    }
 }
 
  ?>

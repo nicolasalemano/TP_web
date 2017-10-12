@@ -5,15 +5,16 @@
       public static $ACTION = 'action';
       public static $PARAMS = 'params';
       public static $ACTIONS = [
-        ''                => 'EquipoController#HOME',
-        'HOME'            => 'EquipoController#HOME',
+          ''                => 'EquipoController#inicio',
+       // ''                => 'EquipoController#HOME',
+        'HOME'            => 'EquipoController#home',
         'equipo'          => 'EquipoController#equipos',
         'agregarEquipo'   => 'EquipoController#createForm',
         'guardarEquipo'   => 'EquipoController#store',
         'editarEquipo'    => 'EquipoController#EditEquipo',
         'guardarEquipoEdit'   => 'EquipoController#updateEquipo',
         'borrarEquipo'    => 'EquipoController#destroy',
-          'detalleequipo'   => 'EquipoController#equipo',
+        'detalleequipo'   => 'EquipoController#equipo',
 
         'agregarJugador'  => 'JugadorController#createJugador',
         'guardarJugador'  => 'JugadorController#storeJugador',
