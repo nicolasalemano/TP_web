@@ -1,4 +1,3 @@
-
 "use strict"
 
 $(document).ready(function (){
@@ -10,6 +9,7 @@ $(document).ready(function (){
 
     $("body").on("submit", 'form', function (e) {
         e.preventDefault();
+        //alert(this.action);
         guardaSubmit($(this),this.action);
     });
     $('#refresh').click(function(event){
@@ -17,7 +17,6 @@ $(document).ready(function (){
       //  cargaApi();
     })
 });
-
     function partial(url)
     {
        $.post(url, "", function (data)
@@ -27,7 +26,6 @@ $(document).ready(function (){
            ActualizarEventos();
        })
     }
-
     function ActualizarEventos(){
         $("select").change (function (e) {
             e.preventDefault();
@@ -39,6 +37,10 @@ $(document).ready(function (){
     {
             let serializedData = form.serialize();
             $.post(action, serializedData,  function(response) {
+                if ((action.indexOf("verificarUsuario")>0))
+                {
+                    actualizaNav();
+                }
                 $('.js-carga').html(response);
             });
     }
@@ -51,7 +53,14 @@ $(document).ready(function (){
 
     }
 
-
+    function actualizaNav()
+    {
+        location.reload();
+        /*$.post('cargaNav', "", function (data){
+            $('.js-nav').html(data);
+            ActualizarEventos();
+        })*/
+    }
 /*
     function cargaApi()
     {

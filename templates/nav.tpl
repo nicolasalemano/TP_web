@@ -1,4 +1,4 @@
-<div class = "row">
+<div class = "row js-nav">
 <div id="main_" class="logo">
     <img class="pequena" src="images/logo_nba.png" alt="logo">
 </div>
@@ -20,7 +20,9 @@
                     <li><a class="partial"  href="equipo" name="equipo">Equipos <span class="sr-only">(current)</span></a></li>
                     <li><a class="partial"  href="jugadores" name="jugadores">jugadores</a></li>
                     <li><a class="partial"  href="api/comentario" name="api/comentario">Comentarios</a></li>
+                    {if $permisos=1}
                     <li><a class="partial"  href="adminUser" name="adminUser">ADMIN</a></li>
+                    {/if}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {if $sesion}
