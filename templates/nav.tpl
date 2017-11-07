@@ -19,6 +19,8 @@
                 <ul class="nav navbar-nav">
                     <li><a class="partial"  href="equipo" name="equipo">Equipos <span class="sr-only">(current)</span></a></li>
                     <li><a class="partial"  href="jugadores" name="jugadores">jugadores</a></li>
+                    <li><a class="partial"  href="api/comentario" name="api/comentario">Comentarios</a></li>
+                    <li><a class="partial"  href="adminUser" name="adminUser">ADMIN</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {if $sesion}
@@ -27,6 +29,7 @@
                     {else}
                         <li>Usuario logueado: <b>Invitado</b></li>
                         <li><a class="partial" href="login" name="login">Iniciar Sesión</a></li>
+                        <li><a class="partial" href="registrarse" name="registrarse">Registrarse</a></li>
                     {/if}
                 </ul>
             </div><!-- /.navbar-collapse -->

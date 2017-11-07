@@ -27,7 +27,8 @@
               <li><a class="partial" href="logout"name="logout">Logout</a></li>
             {else}
               <li>Usuario logueado: <b>Invitado</b></li>
-              <li><a class="partial" href="login" name="login">Iniciar Sesión</a></li>
+              <li><a class="partial" href="login" name="login">Iniciar Sesión Registrarse</a></li>
+              <li><a class="partial" href="registrarse" name="registrarse">Registrarse</a></li>
             {/if}
           </ul>
         </div><!-- /.navbar-collapse -->

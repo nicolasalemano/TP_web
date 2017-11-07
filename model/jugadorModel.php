@@ -6,31 +6,31 @@ class JugadorModel extends Model
 
   function getJugadores(){
 
-    $sentencia = $this->db->prepare( 'SELECT j.id, e.equipo, j.nombre, j.apellido, j.posicion, j.numero, j.edad, j.altura, j.peso, j.universidad, j.salario
-                                                FROM jugador j
-                                                INNER JOIN equipo e ON j.id_equipo=e.id
+    $sentencia = $this->db->prepare( 'SELECT j.id, e.equipo, j.nombre, j.apellido, j.posicion, j.numero, j.edad, j.altura, j.peso, j.universidad, j.salario 
+                                                FROM jugador j 
+                                                INNER JOIN equipo e ON j.id_equipo=e.id 
                                                 ORDER BY J.ID DESC');
     $sentencia->execute();
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
   function getJugador($id_equipo){
-    $sentencia = $this->db->prepare( 'SELECT j.id, e.equipo, j.nombre, j.apellido, j.posicion, j.numero, j.edad, j.altura, j.peso, j.universidad, j.salario
-                                                FROM jugador j
+    $sentencia = $this->db->prepare( 'SELECT j.id, e.equipo, j.nombre, j.apellido, j.posicion, j.numero, j.edad, j.altura, j.peso, j.universidad, j.salario 
+                                                FROM jugador j 
                                                 INNER JOIN equipo e ON j.id_equipo=e.id WHERE j.id=?');
     $sentencia->execute([$id_equipo]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
     function getJugadorEquipo($id_equipo){
-        $sentencia = $this->db->prepare( 'SELECT j.id, e.equipo, j.nombre, j.apellido, j.posicion, j.numero, j.edad, j.altura, j.peso, j.universidad, j.salario
-                                                    FROM jugador j
-                                                    INNER JOIN equipo e ON j.id_equipo=e.id
+        $sentencia = $this->db->prepare( 'SELECT j.id, e.equipo, j.nombre, j.apellido, j.posicion, j.numero, j.edad, j.altura, j.peso, j.universidad, j.salario 
+                                                    FROM jugador j 
+                                                    INNER JOIN equipo e ON j.id_equipo=e.id 
                                                     WHERE e.id=?');
         $sentencia->execute([$id_equipo]);
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
 
   function crearJugador($id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario){
-    $sentencia = $this->db->prepare('INSERT INTO jugador (id_equipo,nombre,apellido,posicion,numero,edad,altura,peso,universidad,salario)
+    $sentencia = $this->db->prepare('INSERT INTO jugador (id_equipo,nombre,apellido,posicion,numero,edad,altura,peso,universidad,salario) 
                                               VALUES(?,?,?,?,?,?,?,?,?,?)');
     $sentencia->execute([$id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario]);
   }

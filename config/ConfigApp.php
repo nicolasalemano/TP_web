@@ -6,7 +6,6 @@
       public static $PARAMS = 'params';
       public static $ACTIONS = [
           ''                => 'EquipoController#inicio',
-       // ''                => 'EquipoController#HOME',
         'HOME'            => 'EquipoController#home',
         'equipo'          => 'EquipoController#equipos',
         'agregarEquipo'   => 'EquipoController#createForm',
@@ -15,6 +14,7 @@
         'guardarEquipoEdit'   => 'EquipoController#updateEquipo',
         'borrarEquipo'    => 'EquipoController#destroy',
         'detalleequipo'   => 'EquipoController#equipo',
+        'conferencia'     => 'EquipoController#getConferencia',
 
         'agregarJugador'  => 'JugadorController#createJugador',
         'guardarJugador'  => 'JugadorController#storeJugador',
@@ -23,9 +23,18 @@
         'editarJugador'   =>'JugadorController#editJugador',
         'updateJugador'   =>'JugadorController#updateJugador',
 
-        'login' => 'LoginController#index',
-        'verificarUsuario' => 'LoginController#verify',
-        'logout' => 'LoginController#destroy',
+        'login'             => 'LoginController#index',
+        'verificarUsuario'  => 'LoginController#verify',
+        'logout'            => 'LoginController#destroy',
+        'registrarse'       => 'LoginController#mostrarRegistro',
+        'registrarUsuario'  => 'LoginController#createUser',
+        'adminUser'         =>  'LoginController#adminUser',
+        'borrarUsuario'     =>  'LoginController#deleteUser',
+        'editarUsuario'     =>  'LoginController#editUser',
+        'guardarEditUser'     =>  'LoginController#guardarEditUser',
+
+
+
 
 
 
