@@ -3,6 +3,7 @@ include_once('model/EquipoModel.php');
 include_once('view/EquipoView.php');
 
 
+
 class EquipoController extends SecuredController
 {
 
@@ -19,11 +20,18 @@ class EquipoController extends SecuredController
 
 //funciona partioal
   function inicio(){
-      $sesion=SecuredController::getUser();
+
+      $var= $this->baseURL;
+      $sesion=$this->getUser();
+     /* $permisos=$_SESSION['permissions'];
+      echo $permisos;
+      die();*/
       $this->view->inicio($sesion);
   }
 //funciona partial
-  public function home(){
+  public function home()
+  {
+
       $sesion=SecuredController::getUser();
       $this->view->mostrarHome($sesion);
   }
@@ -32,7 +40,7 @@ class EquipoController extends SecuredController
   public function index()
   {
     $equipo = $this->model->getEquipos();
-    $sesion=SecuredController::getUser();
+    $sesion=$this->getUser();
     $this->view->mostrarEquipo($equipo,$sesion);
   }
 
@@ -40,7 +48,7 @@ class EquipoController extends SecuredController
     //Funciona partial
   public function equipos()
   {
-      $sesion=SecuredController::getUser();
+      $sesion=$this->getUser();
     $equipo = $this->model->getEquipos();
     $this->view->mostrarEquipos($equipo,$sesion);
   }
@@ -50,20 +58,16 @@ class EquipoController extends SecuredController
 
   public function createForm()
   {
-      $sesion=SecuredController::getUser();
-   if ($sesion!==false) {
+      $sesion=$this->getUser();
+      $this->verify();
        $this->view->mostrarCrearEquipoForm($sesion);
-   }
-   else{
-       header('Location: '.LOGIN);
-   }
+
   }
 
   //Funcion para guardar un equipo
   public function store()
   {
-    $sesion=SecuredController::getUser();
-    if ($sesion!==false) {
+      $this->verify();
         $equipo = $_POST['equipo'];
         $nom_corto = $_POST['nom_corto'];
         $ganados = $_POST['ganados'];
@@ -79,43 +83,35 @@ class EquipoController extends SecuredController
         else{
           $this->view->errorCrear("El campo nombre del equip es requerido es requerido", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
         }
-    }
-    else{
-        header('Location: '.LOGIN);
-    }
+
   }
 
   //funcion para eliminar un equipo
   public function destroy($params)
   {
-      $sesion=SecuredController::getUser();
-      if ($sesion!==false) {
+      $this->verify();
           $id_equipo = $params[0];
           $this->model->borrarEquipo($id_equipo);
           header('Location: ' . EQUIPO);
-      }else{
-          header('Location: '.LOGIN);
-      }
+
   }
 
 //Funcion para mostrar el formulario de edicion de equipo
   public function EditEquipo($params){
       $id_equipo = $params[0];
-      $sesion=SecuredController::getUser();
-      if ($sesion!==false) {
+      $sesion=$this->getUser();
+      $this->verify();
           $equipo = $this->model->verEquipo($id_equipo);
           $this->view->editFormEquipoForm($equipo, $sesion);
-      }else
-          {
-          header('Location: ' . LOGIN);
-      }
+
   }
 
 
     public function updateEquipo()
     {
-        $sesion=SecuredController::getUser();
-        if ($sesion!==false) {
+        $this->verify();
+
+
             $id = $_POST['id'];
             $equipo = $_POST['equipo'];
             $nom_corto = $_POST['nom_corto'];
@@ -128,17 +124,13 @@ class EquipoController extends SecuredController
             $this->model->actualizarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$id);
            header('Location: '.equipo);
 
-            }
-        else{
-        header('Location: '.LOGIN);
-    }
     }
 
 
 
     public function equipo($params)
     {
-        $sesion=SecuredController::getUser();
+        $sesion=$this->getUser();
         $id_equipo= $params[0];
         $infoEquipo= $this->model->verEquipo($id_equipo);
         $JugadorModel = new JugadorModel();
@@ -146,6 +138,16 @@ class EquipoController extends SecuredController
         $this->view->mostrarInfoEquipo($infoEquipo, $jugadores,$sesion);
 
     }
+
+    public function getConferencia($params)
+    {
+        $sesion=$this->getUser();
+        $conf= $params[0] ;
+        $listadoEquipo = $this->model->getConferencia($conf);
+        $this->view->mostrarConferencia($listadoEquipo,$sesion);
+    }
+
+
 }
 
  ?>

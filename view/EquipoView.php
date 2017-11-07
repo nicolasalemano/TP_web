@@ -73,6 +73,13 @@ class EquipoView extends View
       $this->smarty->assign('jugadores', $jugadores);
     $this->smarty->display('templates/conEquipo/infoEquipo.tpl');
   }
+
+  function mostrarConferencia($conf,$sesion)
+  {
+    $this->smarty->assign("equipo", $conf);
+    $this->smarty->assign('sesion', $sesion);
+    $this->smarty->display('templates/conEquipo/tablaEquipo.tpl');
+  }
 }
 
  ?>

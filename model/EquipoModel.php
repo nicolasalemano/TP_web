@@ -18,6 +18,8 @@ class EquipoModel extends Model
   function guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia){
     $sentencia = $this->db->prepare('INSERT INTO equipo(equipo,nom_corto,ganados,perdidos,porcentaje,dif_partido,conferencia) VALUES(?,?,?,?,?,?,?)');
     $sentencia->execute([$equipo,$nom_corto,$ganados,$perdidos,$porcentaje,$dif_partido,$conferencia]);
+      $id = $this->db->lastInsertId();
+      return $this->verEquipo($id);
   }
 
   function borrarEquipo($id_equipo){
@@ -31,6 +33,7 @@ class EquipoModel extends Model
 
        $temp= $sentencia->execute([$equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$id]);
 
+        return $this->verEquipo($id);
     }
 
     function editarEquipo($id){
@@ -39,7 +42,12 @@ class EquipoModel extends Model
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
   }
-
+  function getConferencia($conf)
+  {
+    $query=$this->db->prepare("SELECT * FROM equipo WHERE conferencia=? ORDER BY equipo");
+    $query->execute([$conf]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+  }
 
 }
 
