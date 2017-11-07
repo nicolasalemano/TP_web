@@ -1,7 +1,7 @@
 
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-
+          <h3>Iniciar seción</h3>
           <form action="verificarUsuario" method="post">
             <div class="form-group">
               <label for="usuario">Usuario</label>
@@ -16,6 +16,7 @@
             {/if}
             <button type="submit" class="btn btn-default">Login</button>
           </form>
+
         </div>
       </div>
 
