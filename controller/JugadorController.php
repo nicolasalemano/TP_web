@@ -20,7 +20,7 @@ class JugadorController extends SecuredController
 
     public function jugador($params){
       $id = $params[0];
-        $sesion=SecuredController::getUser();
+        $sesion=$this->getUser();
       $jugador = $this->model->getJugador($id);
       $this->view->mostrarJugador($jugador,$sesion);
     }
@@ -31,30 +31,26 @@ class JugadorController extends SecuredController
       $equipoModel = new EquipoModel();
       $equipos = $equipoModel->getEquipos();
       $jugadores = $this->model->getJugadores();
-      $sesion=SecuredController::getUser();
+      $sesion=$this->getUser();
       $this->view->mostrarJugadores($jugadores, $equipos, $sesion);
     }
 
 
     public function createJugador()
     {
-        $sesion=SecuredController::getUser();
-        if ($sesion!==false) {
+        $this->verify();
+        $sesion=$this->getUser();
+
           $equipoModel = new EquipoModel();
           $equipos = $equipoModel->getEquipos();
           $this->view->mostrarCrearJugador($equipos, $sesion);
-        }else
-        {
-            header('Location: ' . LOGIN);
-        }
     }
 
   public function storeJugador()
   {
 
+        $this->verify();
 
-      $sesion=SecuredController::getUser();
-      if ($sesion!==false) {
         $id_equipo =$_POST['id_equipo'];
         $nombre =$_POST['nombre'];
         $apellido =$_POST['apellido'];
@@ -69,44 +65,33 @@ class JugadorController extends SecuredController
         $this->model->crearJugador($id_equipo,$nombre,$apellido,$posicion,$numero,$edad,$altura,$peso,$universidad,$salario);
 
        header('Location: '.JUGADORES);
-      }else
-    {
-    header('Location: ' . LOGIN);
-    }
-
   }
 
   public function destroyJugador($params)
   {
-      $sesion=SecuredController::getUser();
-      if ($sesion!==false) {
+      $this->verify();
+
         $id = $params[0];
         $this->model->borrarJugador($id);
         header('Location: '.JUGADORES);
-      }else
-      {
-          header('Location: ' . LOGIN);
-      }
+
   }
 
   public function editJugador($params){
-      $sesion=SecuredController::getUser();
-      if ($sesion!==false) {
+        $this->verify();
+      $sesion=$this->getUser();
+
         $equipoModel = new EquipoModel();
         $equipos = $equipoModel->getEquipos();
         $id = $params[0];
         $jugador = $this->model->getJugador($id);
         $this->view->mostrarEditJugador($jugador, $equipos, $sesion);
-        // $this->updateJugador();
-      }else{
-          header('Location: ' . LOGIN);
-      }
 
     }
 
   public function updateJugador(){
-      $sesion=SecuredController::getUser();
-      if ($sesion!==false) {
+      $this->verify();
+
           $id =$_POST['id'];
           $id_equipo =$_POST['id_equipo'];
           $nombre =$_POST['nombre'];
@@ -120,9 +105,7 @@ class JugadorController extends SecuredController
           $salario =$_POST['salario'];
         $this->model->actualizaJugador($id_equipo, $nombre, $apellido, $posicion, $numero, $edad, $altura, $peso, $universidad, $salario,$id);
         header('Location: '.JUGADORES);
-      }else{
-          header('Location: ' . LOGIN);
-      }
+
   }
 
 

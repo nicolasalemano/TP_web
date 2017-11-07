@@ -16,30 +16,30 @@ class JugadorView extends View
       $this->smarty->assign('sesion', $sesion);
       $this->smarty->assign('equipos', $equipo);
     $this->smarty->assign('jugador', $jugadores);
-    $this->smarty->display('templates/Jugadores/index.tpl');
+    $this->smarty->display('templates/jugadores/index.tpl');
   }
 
   function mostrarJugador($jugador,$sesion){
       $this->smarty->assign('sesion', $sesion);
     $this->smarty->assign('jugador', $jugador);
-    $this->smarty->display('templates/Jugadores/indexJugador.tpl');
+    $this->smarty->display('templates/jugadores/indexJugador.tpl');
   }
   function mostrarCrearJugador($equipos,$sesion){
       $this->smarty->assign('sesion', $sesion);
     $this->assignarJugadorForm($equipos);
-    $this->smarty->display('templates/Jugadores/formCrear.tpl');
+    $this->smarty->display('templates/jugadores/formCrear.tpl');
   }
 
 function mostrarEditJugador($jugador, $equipos, $sesion){
     $this->smarty->assign('sesion', $sesion);
   $this->smarty->assign('jugador', $jugador);
   $this->smarty->assign('equipos', $equipos);
-  $this->smarty->display('templates/Jugadores/infoJugador.tpl');
+  $this->smarty->display('templates/jugadores/infoJugador.tpl');
 }
   function errorCrear($error, $equipo, $nom_corto, $ganados, $perdidios, $porcentaje, $dif_partido, $conferencia){
     $this->assignarJugadorForm($equipo, $nom_corto, $ganados, $perdidios, $porcentaje, $dif_partido, $conferencia);
     $this->smarty->assign('error', $error);
-    $this->smarty->display('templates/Jugadores/formCrear.tpl');
+    $this->smarty->display('templates/jugadores/formCrear.tpl');
   }
 
   private function assignarJugadorForm($equipos){

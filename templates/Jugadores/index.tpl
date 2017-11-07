@@ -7,6 +7,6 @@
             <a class ="partial" href="agregarJugador">Agregar jugador</a>
             {else}
           {/if}
-          {include file="Jugadores/jugador.tpl"}
+          {include file="jugadores/jugador.tpl"}
         </div>
       </div>
