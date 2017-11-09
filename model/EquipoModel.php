@@ -15,10 +15,27 @@ class EquipoModel extends Model
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
 //dalta modificar las entradas
-  function guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia){
+
+    private function subirImagenes($imagenes){
+        $rutas = [];
+        foreach ($imagenes as $imagen) {
+            $destino_final = 'images/upload' . uniqid() . '.jpg';
+            move_uploaded_file($imagen, $destino_final);
+            $rutas[]=$destino_final;
+        }
+        print_r($rutas);
+        die();
+        return $rutas;
+    }
+  function guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$rutaTempImagenes){
     $sentencia = $this->db->prepare('INSERT INTO equipo(equipo,nom_corto,ganados,perdidos,porcentaje,dif_partido,conferencia) VALUES(?,?,?,?,?,?,?)');
     $sentencia->execute([$equipo,$nom_corto,$ganados,$perdidos,$porcentaje,$dif_partido,$conferencia]);
       $id = $this->db->lastInsertId();
+      $rutas = $this->subirImagenes($rutaTempImagenes);
+      $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(id,ruta) VALUES(?,?)');
+      foreach ($rutas as $ruta) {
+          $sentencia_imagenes->execute([$id,$ruta]);
+      }
       return $this->verEquipo($id);
   }
 

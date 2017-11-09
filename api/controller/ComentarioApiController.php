@@ -1,6 +1,8 @@
 <?php
+
+require_once '../libs/Smarty.class.php';
 require_once('model/ComentarioApiModel.php');
-require_once('../view/ComentarioView.php');
+//require_once('../view/ComentarioView.php');
 require_once('Api.php');
 
 class ComentarioApiController extends Api
@@ -11,7 +13,7 @@ class ComentarioApiController extends Api
     {
         parent::__construct();
         $this->model = new ComentarioApiModel();
-        $this->view = new ComentarioView();
+       // $this->view = new ComentarioView();
     }
 
     public function getCommentApiEquipos()

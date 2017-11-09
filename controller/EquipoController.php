@@ -16,17 +16,30 @@ class EquipoController extends SecuredController
     $this->model = new EquipoModel();
   }
 
-
+    private function sonJPG($imagenesTipos){
+        foreach ($imagenesTipos as $tipo) {
+            if($tipo != 'image/jpeg') {
+                return false;
+            }
+        }
+        return true;
+    }
 
 //funciona partioal
   function inicio(){
 
       $var= $this->baseURL;
       $sesion=$this->getUser();
-     /* $permisos=$_SESSION['permissions'];
-      echo $permisos;
-      die();*/
-      $this->view->inicio($sesion);
+      $permisos = $_SESSION['permissions'];
+    if($permisos==1)
+    {
+        $permissions=1;
+    }
+    else{
+        $permissions=0;
+    }
+
+      $this->view->inicio($sesion, $permissions);
   }
 //funciona partial
   public function home()
@@ -68,6 +81,13 @@ class EquipoController extends SecuredController
   public function store()
   {
       $this->verify();
+      //error_reporting(E_ALL | E_STRICT);
+      var_dump(debug_backtrace());
+      die();
+
+      $rutaTempImagenes = $_FILES['ima']['name'];
+      print_r($rutaTempImagenes);
+      die();
         $equipo = $_POST['equipo'];
         $nom_corto = $_POST['nom_corto'];
         $ganados = $_POST['ganados'];
@@ -76,13 +96,23 @@ class EquipoController extends SecuredController
         $dif_partido = $_POST['dif_partido'];
         $conferencia = $_POST['conferencia'];
 
-        if(isset($_POST['equipo']) && !empty($_POST['equipo'])){
-          $this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
-          header('Location: '.EQUIPO);
+        if(isset($_POST['equipo']) && !empty($_POST['equipo']))
+        {
+            if ($this->sonJPG($_FILES['imagenes']['type']))
+            {
+                $this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia, $rutaTempImagenes);
+                header('Location: ' . EQUIPO);
+            }
+            else
+                {
+                $this->view->errorCrear("La imagen tiene que ser JPG", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
+                }
         }
-        else{
-          $this->view->errorCrear("El campo nombre del equip es requerido es requerido", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
+        else
+        {
+            $this->view->errorCrear("El campo nombre del equip es requerido es requerido", $equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
         }
+
 
   }
 
@@ -98,6 +128,7 @@ class EquipoController extends SecuredController
 
 //Funcion para mostrar el formulario de edicion de equipo
   public function EditEquipo($params){
+
       $id_equipo = $params[0];
       $sesion=$this->getUser();
       $this->verify();

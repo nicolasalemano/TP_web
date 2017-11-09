@@ -1,6 +1,13 @@
 "use strict"
 
 $(document).ready(function (){
+   // event.preventDefault();
+
+    $("body").on("click",'.api',function (e) {
+        e.preventDefault();
+        alert(this.href);
+        //partial(this.href);
+    });
 
     $("body").on("click",'.partial',function (e) {
         e.preventDefault();
@@ -16,6 +23,23 @@ $(document).ready(function (){
         event.preventDefault();
       //  cargaApi();
     })
+
+  /*  let templateComentario;
+    $.ajax({ url: 'js/templates/comentario.mst'}).done( template => templateComentario = template);
+    function cargarComentario() {
+
+        $.ajax("api/comentario")
+            .done(function(comentario) {
+                alert ("aca");
+                $('li').remove();
+                let rendered = Mustache.render(templateComentario , comentarios);
+                $('.js-carga').append(rendered);
+            })
+            .fail(function() {
+                alert ("error");
+                $('.js-carga').append('<li>Imposible cargar la lista de tareas</li>');
+            });
+    }*/
 });
     function partial(url)
     {
@@ -61,16 +85,11 @@ $(document).ready(function (){
             ActualizarEventos();
         })*/
     }
-/*
+
     function cargaApi()
     {
-        var element = '<li id="tarea' + tarea.id_tarea + '"class="list-group-item">'
-        if(tarea.completado == 1)
-            element += '<s>' + tarea.titulo + ':' + tarea.descripcion + '</s>';
-        else
-            element += tarea.titulo + ':' + tarea.descripcion;
-        element += '<a href="borrarTarea/' + tarea.id_tarea + '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
-        element += '<a href="finalizarTarea/' + tarea.id_tarea + '"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>'
-        element += '</li>';
-        return element;
-    }*/
+
+
+        cargarComentario();
+
+    }

@@ -19,9 +19,10 @@
                 <ul class="nav navbar-nav">
                     <li><a class="partial"  href="equipo" name="equipo">Equipos <span class="sr-only">(current)</span></a></li>
                     <li><a class="partial"  href="jugadores" name="jugadores">jugadores</a></li>
-                    <li><a class="partial"  href="api/comentario" name="api/comentario">Comentarios</a></li>
-                    {if $permisos=1}
-                    <li><a class="partial"  href="adminUser" name="adminUser">ADMIN</a></li>
+                    <li><a class="api"  href="api/comentario" name="api/comentario">Comentarios</a></li>
+                    {if $permisos}
+                        <li><a class="partial"  href="adminUser" name="adminUser">ADMIN</a></li>
+                    {else}
                     {/if}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

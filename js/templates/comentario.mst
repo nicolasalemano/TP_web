@@ -1,0 +1,17 @@
+
+{{#comentarios}}
+<div class="panel">
+<div class="row">
+      <div class="col-md-7">
+        {{comentario}} {{fecha}}
+      </div>
+      <div class="col-md-3">
+         Puntaje : {{id_usuario}}
+      </div>
+      <div class="botonEliminarComent">
+        <a class="eliminarComentario col-md-2" id_comentario="{{id_comentario}}" id_equipo="{{id_equipo}}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+      </div>
+  </div>
+</div>
+
+{{/comentarios}}

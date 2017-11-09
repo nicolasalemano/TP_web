@@ -7,7 +7,6 @@
 
         <div class="js-carga">
 
-
             {include file ="index/content.tpl"}
 
         </div>

@@ -7,8 +7,9 @@ class EquipoView extends View
 
 
 
-  function inicio($sesion){
+  function inicio($sesion, $permisos){
       $this->smarty->assign('sesion', $sesion);
+      $this->smarty->assign('permisos', $permisos);
       $this->smarty->display('index.tpl');
   }
 
@@ -69,6 +70,7 @@ class EquipoView extends View
 
   function mostrarInfoEquipo($infoEquipo, $jugadores,$sesion){
       $this->smarty->assign('sesion', $sesion);
+
     $this->smarty->assign('infoEquipo', $infoEquipo);
       $this->smarty->assign('jugadores', $jugadores);
     $this->smarty->display('templates/conEquipo/infoEquipo.tpl');
