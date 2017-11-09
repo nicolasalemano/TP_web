@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2017 a las 01:32:35
+-- Tiempo de generación: 09-11-2017 a las 21:32:15
 -- Versión del servidor: 10.1.22-MariaDB
 -- Versión de PHP: 7.1.4
 
@@ -21,6 +21,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `db_nba`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id` int(150) NOT NULL,
+  `id_equipo` int(150) NOT NULL,
+  `comentario` varchar(256) NOT NULL,
+  `fecha` date NOT NULL,
+  `id_usuario` int(150) NOT NULL,
+  `imagen` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -73,7 +88,22 @@ INSERT INTO `equipo` (`id`, `equipo`, `nom_corto`, `ganados`, `perdidos`, `porce
 (27, 'New York Knicks', 'Knicks', 32, 50, '.390', 25, 'Este'),
 (28, 'Brooklyn Nets', 'Nets', 21, 61, '.256', 36, 'Este'),
 (29, 'Philadelphia 76ers', '76ers', 10, 72, '.122', 47, 'Este'),
-(30, 'Golden State Warriors', 'Warriors', 73, 9, '.890\r\n', 0, 'Oeste');
+(30, 'Golden State Warriors', 'Warriors', 73, 9, '.890\r\n', 0, 'Oeste'),
+(35, 'asdasd', 'asda', 2, 2, '23', 0, 'Oeste'),
+(36, 'ads', 'ads', 0, 0, '', 0, 'Oeste'),
+(37, ' d', '', 0, 0, '', 0, 'Oeste');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen`
+--
+
+CREATE TABLE `imagen` (
+  `id` int(255) NOT NULL,
+  `id_equipo` int(255) NOT NULL,
+  `ruta` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -675,20 +705,34 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `user` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `name` varchar(250) NOT NULL,
+  `permisos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `user`, `password`, `name`) VALUES
-(1, 'nico', ' $2y$10$C76Vz3Caml8dEkauH6KrxObOA1wORXnv/zgbn6Wm9XnYuMkZLzEj6', 'nico'),
-(2, 'admin', '$2y$10$Sa8QUMl2rWFYeG1T8yTJk.nwVkL5ZmslqomLg5CajfWaXRti6oxfy', 'admin');
+INSERT INTO `user` (`id`, `user`, `password`, `name`, `permisos`) VALUES
+(1, 'nico', '$2y$10$//AkYaV0pPxumfIfScXgh.oCVkROmW2UneppKgWIAmXFBM81C2Gi2', 'nico', 0),
+(2, 'admin', '$2y$10$Sa8QUMl2rWFYeG1T8yTJk.nwVkL5ZmslqomLg5CajfWaXRti6oxfy', 'admin', 1),
+(7, 'as', '$2y$10$At3DclJRZv3cZeeXPiwdvuNXWj25CgYiJu5FhHMUYEVsKIUBQJzXO', 'asa', 0),
+(11, 'n', '$2y$10$9IIub1w2m4std3wmjEc9AO9xslwZacZt0FXka0BsWeBSkWLGw/Zy2', 'nicolas a', 1),
+(12, 'd', '$2y$10$w7v4kf1wbqQIcJa7k/uKluEv605Yv2ce758OGGOOXKeE2KqTBKpGW', 'wef', 0),
+(13, 'tete', '$2y$10$Qs1OsWWGSFPcyAR5RdlCvuYc8zjJ3DvJyMGJUyZpnPkGXDl2lAYga', 'tete', 1),
+(14, 'carlos', '$2y$10$IS1BuKIYQ3ntkGOVd.Y2bO7XYjoC/d3LfUzQUi02Ga1dCuYPUCKAa', 'carlos', 0);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_equipo` (`id_equipo`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `equipo`
@@ -696,6 +740,14 @@ INSERT INTO `user` (`id`, `user`, `password`, `name`) VALUES
 ALTER TABLE `equipo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `equipo` (`equipo`) USING BTREE;
+
+--
+-- Indices de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_tarea` (`id_equipo`),
+  ADD KEY `id_equipo` (`id_equipo`);
 
 --
 -- Indices de la tabla `jugador`
@@ -715,23 +767,46 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `jugador`
 --
 ALTER TABLE `jugador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=568;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=570;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_3` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `jugador`

@@ -1,4 +1,6 @@
 <div class="row">
+    <button id="refresh" type="button" class="btn btn-default btn-xs pull-right" aria-label="Refresh">
+        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> </button>
     <div class="col-md-10 col-md-offset-1">
 
         <h1>COMENTARIOS</h1>
