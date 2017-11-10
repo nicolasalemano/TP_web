@@ -2,7 +2,7 @@
   <div class="col-md-10 col-md-offset-1">
     <h1>Editando Jugador</h1>
 
-    <form  class="formulario" action="updateJugador" method="post">
+    <form  class="formulario formJS" action="updateJugador" method="post">
       <div class="form-group">
         {foreach from=$jugador item=jug_detalle}
 

@@ -20,7 +20,7 @@
 <div class = "row">
     <div class ="col-md-6 col-md-offset-3">
         <h2>Agregar un comentario</h2>
-        <form action="comentario" method="post" enctype="multipart/form-data">
+        <form action="comentario" class="formJS" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 {foreach $infoEquipo as $equipo}
                     <label for="equipoComentario">Equipo: {$equipo["equipo"]}</label>

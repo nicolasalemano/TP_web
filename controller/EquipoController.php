@@ -30,16 +30,23 @@ class EquipoController extends SecuredController
 
       $var= $this->baseURL;
       $sesion=$this->getUser();
-      $permisos = $_SESSION['permissions'];
-    if($permisos==1)
-    {
-        $permissions=1;
-    }
-    else{
-        $permissions=0;
-    }
 
+      if($sesion){
+          $permisos = $_SESSION['permissions'];
+         if($permisos==1)
+            {
+                $permissions=1;
+            }
+         else{
+                $permissions=0;
+            }
+      }
+      else
+      {
+          $permissions=0;
+      }
       $this->view->inicio($sesion, $permissions);
+
   }
 //funciona partial
   public function home()
@@ -82,10 +89,10 @@ class EquipoController extends SecuredController
   {
       $this->verify();
       //error_reporting(E_ALL | E_STRICT);
-      var_dump(debug_backtrace());
-      die();
+      //var_dump(debug_backtrace());
 
-      $rutaTempImagenes = $_FILES['ima']['name'];
+
+      $rutaTempImagenes = $_FILES['ima']['tmp_name'];
       print_r($rutaTempImagenes);
       die();
         $equipo = $_POST['equipo'];

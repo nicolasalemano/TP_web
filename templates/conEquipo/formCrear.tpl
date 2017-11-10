@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
 
-      <form action="guardarEquipo" method="post" enctype="multipart/form-data">
+      <form action="guardarEquipo" id="formGuardar" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <div class="form-group">
           <label for="equipo">Equipo</label>

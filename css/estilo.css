@@ -1,11 +1,18 @@
 #main_ {
- margin:0px;
+ margin: 0px;
  padding: 0px;
- z-index:0;
- float:left;
- min-width:100%;
- border:solid 1px #4F6A7D;
+ z-index: 0;
+ float: left;
+ min-width: 100%;
+ border: solid 1px #4F6A7D;
  text-align: center;
+}
+p {
+ display: block;
+ -webkit-margin-before: 1em;
+ -webkit-margin-after: 1em;
+ -webkit-margin-start: 0px;
+ -webkit-margin-end: 0px;
 }
 .logo{
  margin-left: auto;
@@ -25,4 +32,50 @@
  margin: 0 auto;
  background-image:url("../images/camisetas.jpg");
 
+}
+.recuadro{
+ border-image: initial;
+ border: 2px solid #761c19;
+}
+
+
+#mainTabla  main{
+ background-color: lightsteelblue;
+}
+
+td.embedded {
+ border: none;
+ padding: 0px;
+ text-align: left;
+}
+
+table.bordeTabla{
+ width:100%;
+ border: 1px;
+ cellspacing:0;
+ cellpadding:10;
+}
+p.sub {
+ margin-bottom: 4pt;
+}
+#temp{
+ border: 0;
+ cellspacing:0;
+ text-align: left;
+}
+table.conteinerTabla{
+ width:100%;
+ border: 1px;
+ cellspacing:0%;
+ cellpadding:5%;
+
+}
+
+centradoTabla{
+ align-content: center;
+ text-align: center;
+}
+td.text {
+ padding: 10pt;
+ text-align: left;
 }

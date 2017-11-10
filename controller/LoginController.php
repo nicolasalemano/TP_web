@@ -48,7 +48,7 @@ class LoginController extends SecuredController
         session_start();
         session_destroy();
         define('SESION', 0);
-        header('Location: '.LOGIN);
+        header('Location: '.HOME);
       }
 
       public function mostrarRegistro()

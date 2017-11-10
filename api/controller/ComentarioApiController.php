@@ -16,10 +16,9 @@ class ComentarioApiController extends Api
        // $this->view = new ComentarioView();
     }
 
-    public function getCommentApiEquipos()
-    {
-        $comentario=$this->model->getComentarios();
-        $this->json_response($comentario, 200);
+    public function getCommentApiEquipos()    {
+       $comentario=$this->model->getComentarios();
+       return $this->json_response($comentario, 200);
     }
 
 
@@ -28,7 +27,7 @@ class ComentarioApiController extends Api
 
         $id_comentario = $url_params[":id"];
         $comentario = $this->model->getComentario($id_comentario);
-        if($id_comentario)
+        if($comentario)
             return $this->json_response($comentario, 200);
         else
             return $this->json_response("false", 404);

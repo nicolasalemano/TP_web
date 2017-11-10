@@ -4,7 +4,7 @@
         {if isset($error) }
             <div class="alert alert-danger" role="alert">{$error}</div>
         {/if}
-        <form  class="formulario" action="guardarEditUser" method="POST">
+        <form  class="formulario formJS" action="guardarEditUser" method="POST">
             <div class="form-group">
                 {foreach from=$user item=usuario}
                     <label for="id">"{$usuario['id']}"</label>

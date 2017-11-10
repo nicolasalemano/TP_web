@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     {if isset($error) }
-      <div class="alert alert-danger" role="alert">{$error}</div>
+      <div class="alert alert-danger formJS" role="alert">{$error}</div>
     {/if}
     <form class="formulario" id="guardarjugador" action="guardarJugador" method="post">
       <div class="form-group">

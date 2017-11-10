@@ -4,7 +4,9 @@ class ComentarioApiModel extends model
 
     public function getComentarios()
     {
-        $sentencia=$this->db->prepare('select * from comentario');
+        $sentencia=$this->db->prepare('select c.id, e.equipo, c.comentario, c.fecha, u.user, c.puntuacion from comentario c 
+                                                INNER JOIN equipo e ON e.id= c.id_equipo 
+                                                INNER JOIN user u ON u.id=c.id_usuario');
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }

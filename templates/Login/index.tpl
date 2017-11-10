@@ -1,8 +1,8 @@
 
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <h3>Iniciar seción</h3>
-          <form action="verificarUsuario" method="post">
+          <h3>Iniciar sesión</h3>
+          <form action="verificarUsuario" class="formJS" method="post">
             <div class="form-group">
               <label for="usuario">Usuario</label>
               <input type="text" class="form-control" id="usuario" name="usuario" placeholder="admin" required>

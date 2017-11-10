@@ -1,7 +1,7 @@
       <div class="row">
           <div class="col-md-6 col-md-offset-3">
           <h1>Registración de usuario</h1>
-          <form action="registrarUsuario" method="post">
+          <form action="registrarUsuario" class="formJS" method="post">
             <div class="form-group">
               <label for="nombre">Nombre y Apellido</label>
               <input type="text" class="form-control" id="nomApe" name="nomApe" placeholder="Nombre y Apellido" required>
