@@ -68,7 +68,7 @@ class EquipoController extends SecuredController
     //Funciona partial
   public function equipos()
   {
-      $sesion=$this->getUser();
+    $sesion=$this->getUser();
     $equipo = $this->model->getEquipos();
     $this->view->mostrarEquipos($equipo,$sesion);
   }
@@ -93,8 +93,7 @@ class EquipoController extends SecuredController
 
 
       $rutaTempImagenes = $_FILES['ima']['tmp_name'];
-      print_r($rutaTempImagenes);
-      die();
+
         $equipo = $_POST['equipo'];
         $nom_corto = $_POST['nom_corto'];
         $ganados = $_POST['ganados'];
@@ -105,7 +104,7 @@ class EquipoController extends SecuredController
 
         if(isset($_POST['equipo']) && !empty($_POST['equipo']))
         {
-            if ($this->sonJPG($_FILES['imagenes']['type']))
+            if ($this->sonJPG($_FILES['ima']['type']))
             {
                 $this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia, $rutaTempImagenes);
                 header('Location: ' . EQUIPO);
@@ -171,6 +170,8 @@ class EquipoController extends SecuredController
         $sesion=$this->getUser();
         $id_equipo= $params[0];
         $infoEquipo= $this->model->verEquipo($id_equipo);
+        print_r($infoEquipo);
+        die();
         $JugadorModel = new JugadorModel();
         $jugadores = $JugadorModel->getJugadorEquipo($id_equipo);
         $this->view->mostrarInfoEquipo($infoEquipo, $jugadores,$sesion);

@@ -3,7 +3,7 @@ class LoginView extends View
 {
 
   function mostrarLogin( $error = ''){
-   /* $pas=  password_hash("nico", PASSWORD_DEFAULT);
+   /* $pas=  password_hash("admin", PASSWORD_DEFAULT);
       echo $pas;
     die();*/
    $this->smarty->assign('error', $error);

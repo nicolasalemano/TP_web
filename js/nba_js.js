@@ -2,21 +2,24 @@
 
 $(document).ready(function (e){
 
-    $("#formGuardar").on("submit", function (e) {
-        e.preventDefault();
-        let form_data = new FormData(this);
-        alert (form_data);
-        $.ajax({
-            url:this.action,
-            cpmtemtType: False,
-            processData: False,
-            data: form_data,
-            type: POST,
-            success: function (data) {
-                alert(data);
-            }
 
-        });
+    $("#formGuardar").on("submit", function(ev){
+            ev.preventDefault();
+
+            let form_data = new FormData(this);
+            $.ajax({
+                url: "guardarEquipo",
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(data)
+                {
+                    $('.js-carga').html(data);
+                }
+            });
+            return false;
+
     });
 
     let templateComentario;
@@ -37,13 +40,21 @@ $(document).ready(function (e){
                 console.log(comentarios);
 
                 let rendered = Mustache.render(templateComentario, {'comentarios':comentarios});
-                
+
                 $('.js-carga').html(rendered);
             })
             .fail(function() {
                 $('.js-carga').append('<li>Imposible cargar la lista de tareas</li>');
             });
     }
+
+    $('body').on('click', 'a.js-borrar', function() {
+        event.preventDefault();
+        let idComentario = $(this).data('idcomentario');
+        alert("id: "+ idComentario);
+        borrarComentario(idComentario);
+    });
+
     $("body").on("click",'.partial',function (e) {
         e.preventDefault();
         partial(this.href);
@@ -123,5 +134,16 @@ function cargarComentario(url) {
         cargarComentario();
 
     }
-
-
+function borrarComentario(id) {
+        alert(id);
+    $.ajax({
+        method: "DELETE",
+        url: "api/comentario/" + id
+    })
+        .done(function() {
+            $('#comentario'+id).remove();
+        })
+        .fail(function() {
+            alert('Imposible borrar la tarea');
+        });
+}

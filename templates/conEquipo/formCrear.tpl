@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
 
-      <form action="guardarEquipo" id="formGuardar" method="post" enctype="multipart/form-data">
+      <form action="guardarEquipo" id="formGuardar" class="formGuardar" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <div class="form-group">
           <label for="equipo">Equipo</label>
@@ -15,6 +15,25 @@
           <label for="nom_corto">Nombre Corto</label>
           <input type="num" class="form-control"  name="nom_corto"  value="{$nom_corto}" placeholder="Nombre del equipo corto">
         </div>
+          <div class="form-group">
+              <label for="equipo">Partidos Perdidos</label>
+              <input type="number" class="form-control"  name="perdidos"  value="{$perdidos}" placeholder="Cantidad de partidos perdidos">
+          </div>
+          <div class="form-group">
+              <label for="equipo">Porcentaje</label>
+              <input type="text" class="form-control"  name="porcentaje"  value="{$porcentaje}" placeholder="Porcentaje .654">
+          </div>
+          <div class="form-group">
+              <label for="equipo">Diferencia de partidos</label>
+              <input type="text" class="form-control" name="dif_partido"  value="{$dif_partido}" placeholder="Diferencia de partidos">
+          </div>
+          <div class="form-group">
+              <label for="equipo">Conferencia</label>
+              <select name="conferencia">
+                  <option value="Oeste">Oeste</option>
+                  <option value="Este">Este</option>
+              </select>
+          </div>
         <div class="form-group">
           <label for="ganados">Partidos Ganados</label>
           <input type="number" class="form-control"  name="ganados"  value="{$ganados}" placeholder="Cantidad de partidos ganados">
@@ -29,22 +48,4 @@
     </form>
   </div>
 </div>
-<!--   <div class="form-group">
-          <label for="equipo">Partidos Perdidos</label>
-          <input type="number" class="form-control"  name="perdidos"  value="{$perdidos}" placeholder="Cantidad de partidos perdidos">
-        </div>
-        <div class="form-group">
-          <label for="equipo">Porcentaje</label>
-          <input type="text" class="form-control"  name="porcentaje"  value="{$porcentaje}" placeholder="Porcentaje .654">
-        </div>
-        <div class="form-group">
-          <label for="equipo">Diferencia de partidos</label>
-          <input type="text" class="form-control" name="dif_partido"  value="{$dif_partido}" placeholder="Diferencia de partidos">
-        </div>
-        <div class="form-group">
-           <label for="equipo">Conferencia</label>
-          <select name="conferencia">
-            <option value="Oeste">Oeste</option>
-            <option value="Este">Este</option>
-          </select>
-        </div>-->
+<!--   -->

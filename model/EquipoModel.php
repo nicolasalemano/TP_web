@@ -9,9 +9,10 @@ class EquipoModel extends Model
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
   //funcion que trae los detalles del equipo
-  function verEquipo($id){
+  function  verEquipo($id){
     $sentencia = $this->db->prepare( "select * from equipo where id=?");
     $sentencia->execute([$id]);
+
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
 //dalta modificar las entradas
@@ -19,12 +20,11 @@ class EquipoModel extends Model
     private function subirImagenes($imagenes){
         $rutas = [];
         foreach ($imagenes as $imagen) {
-            $destino_final = 'images/upload' . uniqid() . '.jpg';
+            $destino_final = 'images/upload/' . uniqid() . '.jpg';
             move_uploaded_file($imagen, $destino_final);
             $rutas[]=$destino_final;
         }
-        print_r($rutas);
-        die();
+
         return $rutas;
     }
   function guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$rutaTempImagenes){
@@ -32,10 +32,13 @@ class EquipoModel extends Model
     $sentencia->execute([$equipo,$nom_corto,$ganados,$perdidos,$porcentaje,$dif_partido,$conferencia]);
       $id = $this->db->lastInsertId();
       $rutas = $this->subirImagenes($rutaTempImagenes);
-      $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(id,ruta) VALUES(?,?)');
+      $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(id_equipo,ruta) VALUES(?,?)');
+
       foreach ($rutas as $ruta) {
           $sentencia_imagenes->execute([$id,$ruta]);
       }
+     $tem=$this->verEquipo($id);
+
       return $this->verEquipo($id);
   }
 

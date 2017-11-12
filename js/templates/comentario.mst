@@ -1,52 +1,27 @@
 
+
+<div class="row">
+  <div class="col-md-11 col-md-offset-1 panel panel-default">
 {{#comentarios}}
-<div class="panel">
-    <div class="row">
-        <div class="col-md-11 col-md-offset-1">
-        <table class="mainTabla">
-            <tbody>
-                <tr>
-                    <td clas="embedded">
-                        <table class="bordeTabla">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p class="sub">
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="embedded">
-                                                            <p>Comentario escrito por: {{user}} a la hora {{fecha}}</P>
-                                                        </td>
-                                                    <tr>
-                                                </tbody>
-                                            </table>
-                                        </p>
-                                        <table class="conteinerTabla">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="centradoTabla>
-                                                        <p>Comentario escrito por: {{user}}</p>
-                                                        <p>Creado el: {{fecha}}</P>
-                                                    </td>
-                                                    <td class = "text">
-                                                    <img src="images/chica/76ers.png" >
-                                                        Puntuacion: <img src="images/pelota/{{puntuacion}}.png" alt="{{puntuacion}} estrellas"/><br>
-                                                        <p><b>COMENTARIO:</b> {{comentario}}</p>
-                                                    </td>
-                                                <tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                <tr>
-                            </tbody>
-                        </table>
-                    </td>
-                <tr>
-            </tbody>
-        </table>
-
+    <div id="comentario{{id}}" class="col-md-12 panel panel-title">
+      <div class="col-md-12 panel panel-primary">
+        <div  class="col-md-12 panel panel-primary">
+          <p>Comentario escrito por: <b>{{user}}</b> Creado el: <b>{{fecha}}</b></p>
+        </div>
+        <div class="panel panel-primary">
+            <div class="col-md-3 ">
+              <img src="images/comentario.jpg" >
+            </div>
+            <div class="col-md-8 borde">
+              <p>Puntuacion: <img src="images/pelota/{{puntuacion}}.png" alt="{{puntuacion}} estrellas"/><br></p>
+              <p><b>COMENTARIO:</b> {{comentario}}</p>
+            </div>
+            <div class="col-md-1 ">
+              <a class ="js-borrar" data-idComentario="{{id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true" alt title="Borrar Comentario"></span></a>
+            </div>
+        </div>
+      </div>
     </div>
-</div>
 {{/comentarios}}
-
+  </div>
+</div>

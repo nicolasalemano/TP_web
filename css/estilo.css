@@ -51,9 +51,10 @@ td.embedded {
 
 table.bordeTabla{
  width:100%;
- border: 1px;
- cellspacing:0;
- cellpadding:10;
+ border: #122b40 1px solid;
+ border-collapse: collapse;
+
+
 }
 p.sub {
  margin-bottom: 4pt;
@@ -78,4 +79,9 @@ centradoTabla{
 td.text {
  padding: 10pt;
  text-align: left;
+}
+.borde{
+ border: 1px solid #122b40;
+ height: 100%;
+
 }
