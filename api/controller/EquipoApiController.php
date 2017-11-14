@@ -14,25 +14,27 @@ class EquipoApiController extends Api
       $this->model = new EquipoModel();
   }
 
-    public function getEquipos()
-    {
-       //   echo sizeof($params);
-       //   die();
-        $equipo= $this->model->getEquipos();
-        return $this->json_response($equipo, 200);
-    }
 
     public function getApiEquipo($url_params = [])
     {
 
         $id_equipo = $url_params[":id"];
-        $equipo=$this->model->verEquipo($id_equipo);
-        if($id_equipo)
+
+        $equipo=$this->model->verComentarioEquipo($id_equipo);
+        if($equipo)
             return $this->json_response($equipo, 200);
         else
-            return $this->json_response(false, 404);
+            return $this->json_response("No se encontraron comentarios para el equipo", 404);
        }
 
+/*
+    public function getEquipos()
+    {
+        //   echo sizeof($params);
+        //   die();
+        $equipo= $this->model->getEquipos();
+        return $this->json_response($equipo, 200);
+    }
     public function createApiEquipo()
     {
         $body = json_decode($this->raw_data);
@@ -46,7 +48,7 @@ class EquipoApiController extends Api
         $conferencia=$body->conferencia;
         $equipo_guardado=$this->model->guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia);
         return $this->json_response($equipo_guardado, 200);
-        /*
+      */  /*
              * {
                 "equipo": "aasdasdasds",
                 "nom_corto": "sadfasdfasf",
@@ -57,6 +59,8 @@ class EquipoApiController extends Api
                 "conferencia": "Oeste"
             }
        */
+
+    /*
     }
     public function deleteApiEquipo($url_params = [])
     {
@@ -86,7 +90,7 @@ class EquipoApiController extends Api
         $equipo_editado=$this->model->actualizarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$id);
         return $this->json_response($equipo_editado, 200);
     }
-
+*/
 
 }
 

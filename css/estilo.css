@@ -25,6 +25,12 @@ p {
  display: block;
  margin: 0 auto;
 }
+.imagenChica{
+ width: auto;
+ height: auto;
+ max-width: 80px
+;max-height: 60px
+}
 .camiseta{
  width: 50px;
  height: 50px;
@@ -80,8 +86,25 @@ td.text {
  padding: 10pt;
  text-align: left;
 }
-.borde{
+.borde {
  border: 1px solid #122b40;
  height: 100%;
+}
 
+
+
+
+
+.carousel{
+ background: #2f4357;
+ margin-top: 20px;
+}
+.carousel .item{
+ min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+ margin: 0 auto; /* Align slide image horizontally center */
+}
+.bs-example{
+ margin: 40px;
 }

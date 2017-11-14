@@ -41,7 +41,19 @@ class EquipoModel extends Model
 
       return $this->verEquipo($id);
   }
+function guardaImag($id,$rutaTempImagenes){
+    $rutas = $this->subirImagenes($rutaTempImagenes);
 
+    $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(id_equipo,ruta) VALUES(?,?)');
+
+    foreach ($rutas as $ruta) {
+     $sentencia_imagenes->execute([$id,$ruta]);
+    }
+    $id = $this->db->lastInsertId();
+
+    return $id;
+
+}
   function borrarEquipo($id_equipo){
     $sentencia = $this->db->prepare( "delete from equipo where id=?");
     $sentencia->execute([$id_equipo]);
@@ -68,6 +80,18 @@ class EquipoModel extends Model
     $query->execute([$conf]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
+    function verComentarioEquipo($id)
+    {
+        $query= $this->db->prepare("SELECT * from comentario WHERE id_equipo =?");
+        $query->execute([$id]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function getImagen($id){
+        $query=$this->db->prepare("SELECT *from imagen WHERE id_equipo=?");
+        $query->execute([$id]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 }
 

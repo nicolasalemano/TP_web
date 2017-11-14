@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2017 a las 21:32:15
+-- Tiempo de generación: 14-11-2017 a las 13:54:59
 -- Versión del servidor: 10.1.22-MariaDB
 -- Versión de PHP: 7.1.4
 
@@ -31,11 +31,32 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentario` (
   `id` int(150) NOT NULL,
   `id_equipo` int(150) NOT NULL,
-  `comentario` varchar(256) NOT NULL,
-  `fecha` date NOT NULL,
+  `comentario` varchar(1000) NOT NULL,
+  `fecha` datetime NOT NULL,
   `id_usuario` int(150) NOT NULL,
-  `imagen` varchar(255) NOT NULL
+  `puntuacion` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `id_equipo`, `comentario`, `fecha`, `id_usuario`, `puntuacion`) VALUES
+(3, 14, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-10 07:07:35', 14, 4),
+(4, 14, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-10 07:07:35', 14, 4),
+(9, 21, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 03:09:00', 13, 2),
+(10, 8, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(11, 8, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 03:09:00', 13, 2),
+(12, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(13, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(14, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(15, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(16, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(17, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(18, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(19, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(20, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3),
+(21, 5, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-11-12 04:06:05', 12, 3);
 
 -- --------------------------------------------------------
 
@@ -91,7 +112,8 @@ INSERT INTO `equipo` (`id`, `equipo`, `nom_corto`, `ganados`, `perdidos`, `porce
 (30, 'Golden State Warriors', 'Warriors', 73, 9, '.890\r\n', 0, 'Oeste'),
 (35, 'asdasd', 'asda', 2, 2, '23', 0, 'Oeste'),
 (36, 'ads', 'ads', 0, 0, '', 0, 'Oeste'),
-(37, ' d', '', 0, 0, '', 0, 'Oeste');
+(44, 'asdasd', 'asd', 878, 1, '7878', 888, 'Oeste'),
+(45, 'bnmghjcghj', '', 0, 0, '', 0, 'Oeste');
 
 -- --------------------------------------------------------
 
@@ -104,6 +126,26 @@ CREATE TABLE `imagen` (
   `id_equipo` int(255) NOT NULL,
   `ruta` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `imagen`
+--
+
+INSERT INTO `imagen` (`id`, `id_equipo`, `ruta`) VALUES
+(57, 45, 'images/upload/5a09b12ec7bb6.jpg'),
+(58, 45, 'images/upload/5a09b12eca20f.jpg'),
+(59, 45, 'images/upload/5a09b12ecbb23.jpg'),
+(60, 45, 'images/upload/5a09e27c7b0d6.jpg'),
+(61, 45, 'images/upload/5a09e27c7ff20.jpg'),
+(62, 45, 'images/upload/5a09f90a7c3f7.jpg'),
+(63, 45, 'images/upload/5a09f9e53df03.jpg'),
+(64, 44, 'images/upload/5a09fbbf02598.jpg'),
+(65, 45, 'images/upload/5a0a135022698.jpg'),
+(66, 45, 'images/upload/5a0a13502383a.jpg'),
+(67, 28, 'images/upload/5a0a13b6d81fc.jpg'),
+(68, 28, 'images/upload/5a0a13b6d934e.jpg'),
+(69, 45, 'images/upload/5a0a149015cee.jpg'),
+(70, 45, 'images/upload/5a0a149016e68.jpg');
 
 -- --------------------------------------------------------
 
@@ -717,10 +759,11 @@ INSERT INTO `user` (`id`, `user`, `password`, `name`, `permisos`) VALUES
 (1, 'nico', '$2y$10$//AkYaV0pPxumfIfScXgh.oCVkROmW2UneppKgWIAmXFBM81C2Gi2', 'nico', 0),
 (2, 'admin', '$2y$10$Sa8QUMl2rWFYeG1T8yTJk.nwVkL5ZmslqomLg5CajfWaXRti6oxfy', 'admin', 1),
 (7, 'as', '$2y$10$At3DclJRZv3cZeeXPiwdvuNXWj25CgYiJu5FhHMUYEVsKIUBQJzXO', 'asa', 0),
-(11, 'n', '$2y$10$9IIub1w2m4std3wmjEc9AO9xslwZacZt0FXka0BsWeBSkWLGw/Zy2', 'nicolas a', 1),
+(11, 'n', '$2y$10$9IIub1w2m4std3wmjEc9AO9xslwZacZt0FXka0BsWeBSkWLGw/Zy2', 'nicolas a', 0),
 (12, 'd', '$2y$10$w7v4kf1wbqQIcJa7k/uKluEv605Yv2ce758OGGOOXKeE2KqTBKpGW', 'wef', 0),
 (13, 'tete', '$2y$10$Qs1OsWWGSFPcyAR5RdlCvuYc8zjJ3DvJyMGJUyZpnPkGXDl2lAYga', 'tete', 1),
-(14, 'carlos', '$2y$10$IS1BuKIYQ3ntkGOVd.Y2bO7XYjoC/d3LfUzQUi02Ga1dCuYPUCKAa', 'carlos', 0);
+(14, 'carlos', '$2y$10$IS1BuKIYQ3ntkGOVd.Y2bO7XYjoC/d3LfUzQUi02Ga1dCuYPUCKAa', 'carlos', 0),
+(15, 'q', '$2y$10$IKCVg5.5n7LffKKT0HJ7Leir944HBNbukePYbt7Jh54j0UxVpOQBG', 'sssef', 0);
 
 --
 -- Índices para tablas volcadas
@@ -746,8 +789,7 @@ ALTER TABLE `equipo`
 --
 ALTER TABLE `imagen`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_tarea` (`id_equipo`),
-  ADD KEY `id_equipo` (`id_equipo`);
+  ADD KEY `id_equipo` (`id_equipo`) USING BTREE;
 
 --
 -- Indices de la tabla `jugador`
@@ -770,27 +812,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT de la tabla `jugador`
 --
 ALTER TABLE `jugador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=570;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=568;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Restricciones para tablas volcadas
 --
@@ -806,7 +848,7 @@ ALTER TABLE `comentario`
 -- Filtros para la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`id`) REFERENCES `equipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `jugador`

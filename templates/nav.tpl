@@ -21,7 +21,7 @@
                     <li><a class="partial"  href="jugadores" name="jugadores">jugadores</a></li>
                     <li><a class="api"  href="api/comentario" name="api/comentario">Comentarios</a></li>
                     {if $permisos}
-                        <li><a class="partial"  href="adminUser" name="adminUser">ADMIN</a></li>
+                        <li><a class="partial id-admin"  href="adminUser" id-admin="$permisos" data-permisos="$permisos" name="adminUser">ADMIN</a></li>
                     {else}
                     {/if}
                 </ul>

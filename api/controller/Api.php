@@ -1,11 +1,12 @@
 <?php
-
-abstract class Api{
+include_once '../controller/SecuredController.php';
+ abstract class Api extends SecuredController {
 
     protected $model;
 
     function __construct()
     {
+        parent::__construct();
         $this->raw_data = file_get_contents("php://input");
     }
     protected function json_response($data, $status){

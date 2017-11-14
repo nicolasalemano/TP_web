@@ -15,6 +15,8 @@
         'borrarEquipo'    => 'EquipoController#destroy',
         'detalleequipo'   => 'EquipoController#equipo',
         'conferencia'     => 'EquipoController#getConferencia',
+        'guardarImagen'   => 'EquipoController#guardarImagen',
+        'borrarImagen'    => 'EquipoController#borrarImagen',
 
         'agregarJugador'  => 'JugadorController#createJugador',
         'guardarJugador'  => 'JugadorController#storeJugador',

@@ -6,6 +6,8 @@ include_once 'config/Router.php';
 include_once '../model/Model.php';
 include_once 'controller/EquipoApiController.php';
 include_once 'controller/ComentarioApiController.php';
+include_once '../controller/SecuredController.php';
+include_once '../controller/Controller.php';
 
 $router = new Router();
 

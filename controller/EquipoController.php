@@ -33,37 +33,34 @@ class EquipoController extends SecuredController
 
       if($sesion){
           $permisos = $_SESSION['permissions'];
-         if($permisos==1)
-            {
+         if($permisos==1)            {
                 $permissions=1;
             }
          else{
                 $permissions=0;
             }
       }
-      else
-      {
+      else{
           $permissions=0;
       }
       $this->view->inicio($sesion, $permissions);
-
   }
+
 //funciona partial
   public function home()
   {
-
       $sesion=SecuredController::getUser();
       $this->view->mostrarHome($sesion);
   }
 
-                    //desestimada
+  /*                  //desestimada
   public function index()
   {
     $equipo = $this->model->getEquipos();
     $sesion=$this->getUser();
     $this->view->mostrarEquipo($equipo,$sesion);
   }
-
+*/
   //Funcion para traer todos los equipos
     //Funciona partial
   public function equipos()
@@ -137,9 +134,13 @@ class EquipoController extends SecuredController
 
       $id_equipo = $params[0];
       $sesion=$this->getUser();
+      $permisos=$this->verificaPermiso();
+      echo $permisos;
+      die();
+
       $this->verify();
           $equipo = $this->model->verEquipo($id_equipo);
-          $this->view->editFormEquipoForm($equipo, $sesion);
+          $this->view->editFormEquipoForm($equipo, $sesion,$permisos);
 
   }
 
@@ -166,15 +167,16 @@ class EquipoController extends SecuredController
 
 
     public function equipo($params)
-    {
+    {     $permisos=$this->verificaPermiso();
+
         $sesion=$this->getUser();
         $id_equipo= $params[0];
         $infoEquipo= $this->model->verEquipo($id_equipo);
-        print_r($infoEquipo);
-        die();
+        $imagen=$this->model->getImagen($id_equipo);
+
         $JugadorModel = new JugadorModel();
         $jugadores = $JugadorModel->getJugadorEquipo($id_equipo);
-        $this->view->mostrarInfoEquipo($infoEquipo, $jugadores,$sesion);
+        $this->view->mostrarInfoEquipo($infoEquipo, $jugadores,$sesion,$imagen,$permisos);
 
     }
 
@@ -186,6 +188,26 @@ class EquipoController extends SecuredController
         $this->view->mostrarConferencia($listadoEquipo,$sesion);
     }
 
+    public function guardarImagen()
+    {
+        $rutaTempImagenes = $_FILES['ima']['tmp_name'];
+
+        $sesion=$this->getUser();
+        $id=$_POST["equipoID"];
+
+        if ($this->sonJPG($_FILES['ima']['type'])){
+
+           $equioi= $this->model->guardaImag($id,$rutaTempImagenes);
+
+            header('Location: ' . EQUIPO);
+        }
+
+    }
+    public function borrarImagen($params){
+     $id=
+
+      die();
+    }
 
 }
 

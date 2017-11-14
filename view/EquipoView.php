@@ -62,17 +62,20 @@ class EquipoView extends View
     }
   }
 
-  function editFormEquipoForm($equipo,$sesion){
+  function editFormEquipoForm($equipo,$sesion,$permisos){
     $this->smarty->assign('sesion', $sesion);
+    $this->smarty->assign('permisos',$permisos);
     $this->smarty->assign('equipo',$equipo);
     $this->smarty->display('templates/conEquipo/formEdit.tpl');
   }
 
-  function mostrarInfoEquipo($infoEquipo, $jugadores,$sesion){
+  function mostrarInfoEquipo($infoEquipo, $jugadores,$sesion,$imagen,$permisos){
       $this->smarty->assign('sesion', $sesion);
 
     $this->smarty->assign('infoEquipo', $infoEquipo);
       $this->smarty->assign('jugadores', $jugadores);
+      $this->smarty->assign('imagen', $imagen);
+      $this->smarty->assign('permisos', $permisos);
     $this->smarty->display('templates/conEquipo/infoEquipo.tpl');
   }
 

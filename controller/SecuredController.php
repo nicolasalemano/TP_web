@@ -1,6 +1,6 @@
 <?php
 
-
+require_once "Controller.php";
 class SecuredController extends Controller
 {
   function __construct()
