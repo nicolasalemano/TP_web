@@ -80,11 +80,19 @@ $(document).ready(function (e){
 
     function comentarioEquipo(url){
         alert(url);
+        let id=url.split('/');
+
+        let ultimo=id[id.length-1];
+        alert (ultimo);
+
+    let input= '<input type="hidden" class="form-control" id="equipoID" name="equipo" value="'+id[7]+'">'
+
         $.ajax(url)
             .done(function(comentarios) {
                 console.log(comentarios);
                 let rendered = Mustache.render(templateComentarioEquipo, {'comentarios':comentarios});
                 $('.js-carga').html(rendered);
+                $('#equipoID').html(input);
             })
             .fail(function() {
                 $('.js-carga').append('<li>Imposible cargar la lista de tareas</li>');

@@ -47,7 +47,6 @@ class ComentarioApiController extends Api
             $id_equipo=$body->id_equipo;
             $comentario=$body->comentario;
             $fecha=$body->fecha;
-
             $id_usuario=$body->id_usuario;
             $coment_creado=$this->model->crearComentario($id_equipo,$comentario,$fecha,$id_usuario);
             return $this->json_response($coment_creado, 200);
