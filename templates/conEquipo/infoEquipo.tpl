@@ -99,7 +99,7 @@
             <form action="borrarImagen" id="borrarImagenForm" method="POST" >
                 <ol>
                     {foreach $imagen as $imag}
-                        <li><input type="checkbox" class="checkbox" name="check_list[]" value="{$imag['id']}"> <img class= "imagenChica"src="{$imag['ruta']}"></li>
+                        <li id ="borrarImagen{$imag['id']}"data-idLI="{$imag['id']}"> <img class= "imagenChica"src="{$imag['ruta']}"> <a class="imagen" id="{$imag['id']}"><span class="glyphicon glyphicon-trash" aria-hidden="true" alt title="BorrarImagen"></span></a></li>
                     {/foreach}
                 </ol>
                 <button type="submit" class="btn btn-default">Borrar</button>

@@ -1,0 +1,39 @@
+
+
+<div class="row">
+
+    <div class="row">
+         <div class="col-md-10 col-md-offset-2 panel panel-default">
+            <h1>COMENTARIOS SOBRE El EQUIPO
+         </div>
+    <div>
+
+
+  <div class="col-md-11 col-md-offset-1 panel panel-default">
+{{#comentarios}}
+
+    <div id="comentario{{id}}" class="col-md-12 panel panel-title">
+      <div class="col-md-12 panel panel-primary">
+        <div  class="col-md-12 panel panel-primary">
+          <p>Comentario escrito por: <b>{{user}}</b> Creado el: <b>{{fecha}}</b></p>
+        </div>
+        <div class="panel panel-primary">
+            <div class="col-md-3 ">
+              <img src="images/comentario.jpg" >
+              <b>Equipo:</b> {{equipo}}
+            </div>
+            <div class="col-md-8 borde">
+              <p>Puntuacion: <img src="images/pelota/.png" alt="{{puntuacion}} estrellas"/><br></p>
+              <p><b>COMENTARIO:</b> {{comentario}}</p>
+            </div>
+            <div class="col-md-1 ">
+              <a class ="js-borrar" data-idComentario="{{id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true" alt title="Borrar Comentario"></span></a>
+            </div>
+        </div>
+      </div>
+    </div>
+{{/comentarios}}
+  </div>
+</div>
+
+<div class="row">

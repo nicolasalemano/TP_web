@@ -3,30 +3,30 @@
 $(document).ready(function (e){
     let templateComentario;
     $.ajax({ url: 'js/templates/comentario.mst'}).done( template =>templateComentario = template);
+    let templateComentarioEquipo;
+    $.ajax({ url: 'js/templates/comentarioEquipo.mst'}).done( template =>templateComentarioEquipo = template);
 
 
-    $("body").on("submit", "#borrarImagenForm",function (ev) {
+    //****************IMAGENES****************INICIO**************//
+
+    //Function para borrar una imagen
+    $("body").on("click", "a.imagen",function (ev) {
         ev.preventDefault();
 
-
-        var val = [];
-        $(':checkbox:checked').each(function(i) {
-            val[i] = $(this).val();
-        });
-        alert(val);
-
-        borrarImagen(val,this.action);
+        borrarImagen(this.id);
     });
 
-
+//fucntion para guardar una imagen
     $(".formGuardar").on("submit", function(ev){
         ev.preventDefault();
 
         guardarImagen();
     });
+//****************IMAGENES****************FIN**************//
 
+// ****************COMENTARIO****************INICIO**************//
 
-    $("body").on("click","comentarioEquipo", function(e){
+    $("body").on("click",".comentarioEquipo", function(e){
         e.preventDefault()
         comentarioEquipo(this.href);
     });
@@ -45,12 +45,14 @@ $(document).ready(function (e){
             borrarComentario(idComentario);
         }
     });
-
+//****************PARTIAL ****************INICIO**************//
     //funcion PARTIAL RENDER
     $("body").on("click",'.partial',function (e) {
         e.preventDefault();
         partial(this.href);
     });
+
+//****************PARTIAL****************FIN**************//
 //funcion GUARDAR SUBMIT GENEREAL
     $("body").on("submit", '.formJS',function (e) {
         e.preventDefault();
@@ -69,6 +71,19 @@ $(document).ready(function (e){
             .done(function(comentarios) {
                 console.log(comentarios);
                 let rendered = Mustache.render(templateComentario, {'comentarios':comentarios});
+                $('.js-carga').html(rendered);
+            })
+            .fail(function() {
+                $('.js-carga').append('<li>Imposible cargar la lista de tareas</li>');
+            });
+    }
+
+    function comentarioEquipo(url){
+        alert(url);
+        $.ajax(url)
+            .done(function(comentarios) {
+                console.log(comentarios);
+                let rendered = Mustache.render(templateComentarioEquipo, {'comentarios':comentarios});
                 $('.js-carga').html(rendered);
             })
             .fail(function() {
@@ -141,9 +156,7 @@ function borrarComentario(id) {
 
 
 
-function comentarioEquipo(url){
-alert(url);
-}
+
 
 function guardarImagen(){
     let form_data = new FormData(this);
@@ -162,16 +175,19 @@ function guardarImagen(){
     return false;
 }
 
-function borrarImagen(val, action){
-    let form_data = new FormData(val);
-    alert(form_data);
+function borrarImagen(id){
+
+let url="borrarImagen/"+id;
+
     $.ajax({
-        method: "POST",
-        url: action,
-        data: form_data,
+
+        url: url,
+
     })
-        .done(function() {
-            $('.js-carga').html(data);
+        .done(function(data) {
+            $('#borrarImagen'+id).remove();
+            alert(data)
+
         })
         .fail(function() {
 

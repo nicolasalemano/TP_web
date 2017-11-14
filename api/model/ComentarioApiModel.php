@@ -17,7 +17,7 @@ class ComentarioApiModel extends model
         $sentencia=$this->db->prepare('select e.equipo, c.comentario, u.name, c.fecha from comentario as c 
                                                 INNER JOIN equipo e ON e.id=c.id_equipo 
                                                 INNER JOIN user u ON u.id =c.id_usuario
-                                                WHERE c.id=?');
+                                                WHERE c.id_equipo=?');
         $sentencia->execute([$id]);
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }

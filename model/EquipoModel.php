@@ -93,6 +93,18 @@ function guardaImag($id,$rutaTempImagenes){
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function deleteImagen($id){
+        /*        $imagen=$this->db->prepare("select ruta from imagen WHERE id=?");
+                $imagen->execute([$id]);
+               return $imagen->fetchAll(PDO::FETCH_ASSOC);
+               // $ruta=$imagen->ruta;
+
+                unlink($imagen);*/
+        $query=$this->db->prepare("DELETE from imagen WHERE id=?");
+        $query->execute([$id]);
+
+        return "Imagen Borrada";
+    }
 }
 
  ?>

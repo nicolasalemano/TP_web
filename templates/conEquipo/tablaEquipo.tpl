@@ -44,7 +44,7 @@
                   <td>
                           <a class ="partial" href="borrarEquipo/{$equipos['id']}"><span class="glyphicon glyphicon-trash" aria-hidden="true" alt title="Borrar Equipo"></span></a>
                           <a class ="partial" href="editarEquipo/{$equipos['id']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" alt title="Editar Equipo"></span></a>
-                          <a class ="partial comentarioEquipo" href="api/equipo/{$equipos['id']}"><span class="glyphicon glyphicon-comment" aria-hidden="true" alt title="Comentario"></span></a>
+                          <a class ="partial comentarioEquipo" href="api/comentario/{$equipos['id']}"><span class="glyphicon glyphicon-comment" aria-hidden="true" alt title="Comentario"></span></a>
                       {else}
                   </td>
                     {/if}

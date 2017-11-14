@@ -204,9 +204,10 @@ class EquipoController extends SecuredController
 
     }
     public function borrarImagen($params){
-     $id=
+        $id = $params[0];
+        $resultado=$this->model->deleteImagen($id);
+      return $resultado;
 
-      die();
     }
 
 }
