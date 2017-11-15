@@ -96,7 +96,7 @@ $(document).ready(function (e){
     }
 
     function comentarioEquipo(url){
-    alert("equipo");
+
         cargarFormComentario(url);
         $.ajax(url)
             .done(function(comentarios) {
@@ -113,7 +113,7 @@ $(document).ready(function (e){
     }
 
     function cargarFormComentario(url){
-        alert("carga");
+
         let id=url.split('/');
         let ultimo=id[id.length-1];
         let input= '<input type="hidden" class="form-control" id="equipoID" name="equipo" value="'+ultimo+'">'
@@ -201,7 +201,7 @@ function borrarComentario(id) {
 
 function guardarImagen(){
     let form_data = new FormData(this);
-    alert(form_data);
+
     $.ajax({
         url: "guardarEquipo",
         contentType: false,
