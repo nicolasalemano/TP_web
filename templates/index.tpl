@@ -6,9 +6,13 @@
 
         <div class="js-carga">
 
-            {include file ="index/content.tpl"}
+            {include file ="Index/content.tpl"}
 
         </div>
+        <div class="js-comentario">
+
+        </div>
+
     </article>
 
     {include file ="footer.tpl"}
@@ -16,5 +20,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/nba_js.js" charset="utf-8"></script>
+
 </body>
 </html>

@@ -33,4 +33,14 @@ if(isset($_GET['action'])){
         }
     }
 }
+
+/*  Clave del sitio: 6Lc7yjgUAAAAAIFjl2fi8bzrJxA7lvcMcBu2ewCd
+ *  Clave secreta: 6Lc7yjgUAAAAAA4setMCxXvUo0DaoMGiiqi6Mirh
+ *
+ *  integrar api: <script src='https://www.google.com/recaptcha/api.js'></script>
+ *
+ *  codigo reCaptcha: <div class="g-recaptcha" data-sitekey="6Lc7yjgUAAAAAIFjl2fi8bzrJxA7lvcMcBu2ewCd"></div>
+ *
+ *
+ */
  ?>

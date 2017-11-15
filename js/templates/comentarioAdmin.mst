@@ -1,11 +1,6 @@
 
 
 <div class="row">
-    <div class="row">
-         <div class="col-md-10 col-md-offset-2 panel panel-default">
-            <h1>COMENTARIOS SOBRE El EQUIPO
-         </div>
-    <div>
   <div class="col-md-11 col-md-offset-1 panel panel-default">
   <div class="refresh">
         {{#comentarios}}
@@ -24,7 +19,9 @@
                       <p>Puntuacion: <img src="images/pelota/.png" alt="{{puntuacion}} estrellas"/><br></p>
                       <p><b>COMENTARIO:</b> {{comentario}}</p>
                     </div>
-
+                    <div class="col-md-1 ">
+                      <a class ="js-borrar" data-idComentario="{{id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true" alt title="Borrar Comentario"></span></a>
+                    </div>
                 </div>
               </div>
             </div>

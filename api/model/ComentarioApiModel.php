@@ -14,7 +14,7 @@ class ComentarioApiModel extends model
 
     public function getComentario($id)
     {
-        $sentencia=$this->db->prepare('select e.equipo, c.comentario, u.name, c.fecha, c.id_equipo from comentario as c 
+        $sentencia=$this->db->prepare('select e.equipo, c.comentario, u.name, c.fecha, c.id_equipo, c.puntuacion from comentario as c 
                                                 INNER JOIN equipo e ON e.id=c.id_equipo 
                                                 INNER JOIN user u ON u.id =c.id_usuario
                                                 WHERE c.id_equipo=?');
