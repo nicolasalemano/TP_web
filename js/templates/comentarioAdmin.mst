@@ -16,7 +16,7 @@
                       <b>Equipo:</b> {{equipo}}
                     </div>
                     <div class="col-md-8 borde">
-                      <p>Puntuacion: <img src="images/pelota/.png" alt="{{puntuacion}} estrellas"/><br></p>
+                      <p>Puntuacion: <img src="images/pelota/{{puntuacion}}.png" alt="{{puntuacion}} estrellas"/><br></p>
                       <p><b>COMENTARIO:</b> {{comentario}}</p>
                     </div>
                     <div class="col-md-1 ">
