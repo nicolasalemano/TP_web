@@ -34,6 +34,7 @@ class LoginController extends SecuredController
                   $_SESSION['USER'] = $userName;
                   $_SESSION['LAST_ACTIVITY'] = time();
                   $_SESSION['permissions']= $user[0]["permisos"];
+                  $_SESSION['ID']= $user[0]["id"];
                   define('SESION', 1);
                   header('Location: '.HOME);
               }

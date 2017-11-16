@@ -4,6 +4,8 @@ require_once '../libs/Smarty.class.php';
 require_once('model/ComentarioApiModel.php');
 //require_once('SecuredControllerApi.php');
 require_once('Api.php');
+REQUIRE_ONCE('../recapcha/AUTOLOAD.PHP');
+
 
 class ComentarioApiController extends Api
 {
@@ -12,10 +14,11 @@ class ComentarioApiController extends Api
 
     function __construct()
     {
+
         parent::__construct();
         $this->model = new ComentarioApiModel();
-     //   $this->secure = new SecuredControllerApi();
-       // $this->view = new ComentarioView();
+        $secret = '6Lek6TgUAAAAANPy6OMTcJ9OhreLjFtgSbRLp0UJ';
+        $this->rc=new \ReCaptcha\ReCaptcha($secret);
     }
 
     public function getCommentApiEquipos()   {
@@ -34,26 +37,41 @@ class ComentarioApiController extends Api
             return $this->json_response($comentario, 200);
         }
         else {
-            return $this->json_response("false", 404);
+            //return $this->json_response("false", 404);
         }
     }
 
     public function createCommentApiEquipo()
     {
-        $user=$this->verify();
-        if($user){
-            $body=json_decode($this->raw_data);
+        //$user=$this->verify();
+
+        $body=json_decode($this->raw_data);
+
+        $gRecaptchaResponse = $_POST['g-recaptcha-response']; //google captcha post data
+        $remoteIp = $_SERVER['REMOTE_ADDR']; //to get user's ip
+
+        $recaptchaErrors = ''; // blank varible to store error
+
+        $resp = $this->rc->verify($gRecaptchaResponse, $remoteIp);
+
+        if ($resp->isSuccess()) {
 
             $id_equipo=$body->id_equipo;
             $comentario=$body->comentario;
             $fecha=$body->fecha;
-            $id_usuario=$body->id_usuario;
+            $id_usuario=$user;
             $coment_creado=$this->model->crearComentario($id_equipo,$comentario,$fecha,$id_usuario);
             return $this->json_response($coment_creado, 200);
+
+        } else {
+            $recaptchaErrors = $resp->getErrorCodes(); // set the error in varible
+
+             return $this->json_response([error=>"Error al validar"], 404);
         }
-        else{
-            return $this->json_response("Sin permisos", 404);
-        }
+
+
+
+
     }
 
     public function deleteCommentApiEquipo($url_params = [])

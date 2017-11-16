@@ -135,8 +135,6 @@ class EquipoController extends SecuredController
       $id_equipo = $params[0];
       $sesion=$this->getUser();
       $permisos=$this->verificaPermiso();
-      echo $permisos;
-      die();
 
       $this->verify();
           $equipo = $this->model->verEquipo($id_equipo);

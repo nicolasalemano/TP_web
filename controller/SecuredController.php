@@ -33,6 +33,7 @@ class SecuredController extends Controller
             header('Location: ' . LOGIN);
             die();
         }
+        return $_SESSION['ID'];
     }
     public function verificaPermiso()
     {

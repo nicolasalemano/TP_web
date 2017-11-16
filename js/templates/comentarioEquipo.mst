@@ -2,29 +2,31 @@
 
 <div class="row">
   <div class="col-md-offset-3 col-md-6 col-md-offset-3">
-    <form class="formJS">
-      <div class="form-group">
-        <label for="equipo">Equipo</label>
-      <div id="equipoID">
-      </div>
-      </div>
+    <form action = "api/comentario" class="formJS" method="post">
+          <div id="form-group">
+              <input type="hiden" class="form-control" id="equipoID" name="id_equipo" value="">
+              <input type="text" class="form-control" id="fecha" name="fecha" value="">
+          </div>
+
        <div class="form-group">
              <label for="comentario">Comentario</label>
              <textarea rows="4" cols="80" id="comentario" name="comentario" placeholder="Ingrese su comentario aqui..."></textarea>
-           </div>
+         </div>
 
            <div class="form-group">
              <label for="comentario">Puntaje</label>
                <select id= "puntuacion" name="puntuacion">
-                 <option value="value1">1</option>
-                 <option value="value2"selected>2</option>
-                 <option value="value3">3</option>
-                 <option value="value2">4</option>
-                 <option value="value3">5</option>
+                 <option value="1">1</option>
+                 <option value="2"selected>2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                 <option value="5">5</option>
                </select>
            </div>
 
-      <button type="submit" class="btn btn-default">Submit</button>
+        <div class="g-recaptcha" data-sitekey="6Lek6TgUAAAAACn0onXy5d9itcYzVxOJzVmh3LWm"></div>
+
+      <button type="submit" class="btn btn-default">Crear</button>
 </form>
 
   </div>

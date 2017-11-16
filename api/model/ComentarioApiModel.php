@@ -26,7 +26,7 @@ class ComentarioApiModel extends model
     public function crearComentario($id_equipo,$comentario,$fecha,$id_usuario)
     {
         $sentencia=$this->db->prepare('INSERT INTO comentario (id_equipo,comentario,fecha,id_usuario) VALUES (?,?,?,?)');
-        $sentencia->execute([$id_equipo,$comentario,$fecha,$id_usuario]);
+        $sentencia->execute($id_equipo,$comentario,$fecha,$id_usuario);
         $id = $this->db->lastInsertId();
         return $this->getComentario($id);
     }
