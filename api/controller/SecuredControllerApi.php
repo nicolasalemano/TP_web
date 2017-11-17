@@ -1,4 +1,5 @@
 <?php
+require_once ("Api.php");
 /**
  * Created by PhpStorm.
  * User: Marian
@@ -6,14 +7,18 @@
  * Time: 7:22 PM
  */
 
-class SecuredControllerApi
+class SecuredControllerApi extends Api
 {
+    public function __construct(){
+        session_start();
+}
     public function verify()
     {
         if(!isset($_SESSION['USER'])) {
             header('Location: ' . LOGIN);
             die();
         }
+        return $_SESSION['ID'];
     }
     public function verificaPermiso()
     {
@@ -23,5 +28,8 @@ class SecuredControllerApi
         }
         else
             return 0;
+    }
+    public function getID($usuario){
+
     }
 }

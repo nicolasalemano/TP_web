@@ -49,7 +49,11 @@ $(document).ready(function (e){
             borrarComentario(idComentario);
         }
     });
-
+    //crear comentario api
+    $("body").on("submit", '.guardarComentario',function (e) {
+        e.preventDefault();
+        crearComentario($(this),this.action);
+    });
 //****************PARTIAL ****************INICIO**************//
     //funcion PARTIAL RENDER
     $("body").on("click",'.partial',function (e) {
@@ -64,6 +68,7 @@ $(document).ready(function (e){
         e.preventDefault();
         guardaSubmit($(this),this.action);
     });
+
 
     $('#refresh').click(function(event){
         event.preventDefault();
@@ -108,7 +113,7 @@ $(document).ready(function (e){
 
 
     function comentarioEquipo(URL_COMENTARIO){
-        alert(URL_COMENTARIO);
+
         clearInterval(INTERVAL);
         function refresh() {
             $.ajax({
@@ -116,7 +121,7 @@ $(document).ready(function (e){
 
             })
                 .done(function (comentarios) {
-                console.log (comentarios);
+
                     let rendered = Mustache.render(templateComentario, {'comentarios': comentarios});
                     $('.js-carga').html(rendered);
                 })
@@ -139,14 +144,12 @@ $(document).ready(function (e){
                         [AddZero(now.getHours()),
                         AddZero(now.getMinutes()),
                         AddZero(now.getSeconds())].join(":"),
-                now.getHours() ].join(" ");
+                 ].join(" ");
         return strDateTime;
     }
 //2017-11-10 07:07:35
 // 2017-11-15 23:01 23
     function cargarFormComentario(url){
-       // Reloj();
-      //  alert(url);
         let id=url.split('/');
         let ultimo=id[id.length-1];
 
@@ -154,9 +157,6 @@ $(document).ready(function (e){
         comentarioEquipo(url);
 
         let hora=getDataTime();
-
-
-       // let INTERVAL= setInterval(function(){ cargarComentario(URL_COMENTARIO); }, 2000);
         $.ajax()
             .done(function(comentarios) {
                 let rendered = Mustache.render(templateComentarioEquipo, {'comentarios':comentarios});
@@ -169,6 +169,36 @@ $(document).ready(function (e){
 
             .fail(function() {
                 $('.js-comentario').append('<li>Imposible cargar la lista de tareas</li>');
+            });
+    }
+
+
+
+    function crearComentario() {
+
+        let captcha = grecaptcha.getResponse();
+
+        let comentario = {
+            "captcha": captcha,
+            "id_equipo": $('#equipoID').val(),
+            "fecha": $('#fecha').val(),
+            "comentario": $('#comentario').val(),
+            "puntuacion":  $('#puntuacion').val()
+        };
+
+        $.ajax({
+            method: "POST",
+            url: "api/comentario",
+            data: JSON.stringify(comentario)
+        })
+            .done(function(response) {
+
+                console.log(response);
+
+            })
+            .fail(function(data) {
+                console.log(data);
+                alert(data+'  Imposible mandar el comentario');
             });
     }
 
@@ -205,9 +235,10 @@ function ActualizarEventos(){
 function guardaSubmit(form,action) {
 
     let serializedData = form.serialize();
-    alert(serializedData);
+
     console.log(serializedData);
     $.post(action, serializedData,  function(response) {
+        alert ("cuardado")
         if ((action.indexOf("verificarUsuario") > 0)) {
             actualizaNav();
         }
@@ -224,11 +255,7 @@ function cambioSelectEquipo(valor)
 function actualizaNav()
 {        location.reload();    }
 
-function cargaApi()
-{
-    cargarComentario();
 
-}
 function borrarComentario(id) {
 
     $.ajax({
@@ -275,7 +302,7 @@ function borrarImagen(id){
     })
         .done(function(data) {
             $('#borrarImagen'+id).remove();
-            alert(data);
+
         })
         .fail(function() {
         });

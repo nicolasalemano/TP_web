@@ -23,10 +23,19 @@ class ComentarioApiModel extends model
     }
 
 
-    public function crearComentario($id_equipo,$comentario,$fecha,$id_usuario)
+    public function guardaComentario($user,$id_equipo,$comentario,$puntuacion,$fecha){
+        $query=$this->db->prepare("insert into comentario id_equipo=?, comentario=?, fecha=?, id_usuario=?, puntuacion=?");
+        $query->execute([$id_equipo,$comentario,$fecha,$user, $puntuacion]);
+        $id=$this->db->lastInsertId();
+        return $this->getComentario($id);
+
+
+    }
+
+    public function crearComentario($id_equipo,$comentario,$fecha,$id_usuario,$puntuacion)
     {
-        $sentencia=$this->db->prepare('INSERT INTO comentario (id_equipo,comentario,fecha,id_usuario) VALUES (?,?,?,?)');
-        $sentencia->execute($id_equipo,$comentario,$fecha,$id_usuario);
+        $sentencia=$this->db->prepare('INSERT INTO comentario(id_equipo, comentario, fecha, id_usuario, puntuacion) VALUES (?,?,?,?,?)');
+        $sentencia->execute([$id_equipo,$comentario,$fecha,$id_usuario,$puntuacion]);
         $id = $this->db->lastInsertId();
         return $this->getComentario($id);
     }

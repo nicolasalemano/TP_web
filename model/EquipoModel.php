@@ -27,6 +27,12 @@ class EquipoModel extends Model
 
         return $rutas;
     }
+    function guardarEquipoApi($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia){
+        $sentencia = $this->db->prepare('INSERT INTO equipo(equipo,nom_corto,ganados,perdidos,porcentaje,dif_partido,conferencia) VALUES(?,?,?,?,?,?,?)');
+        $sentencia->execute([$equipo,$nom_corto,$ganados,$perdidos,$porcentaje,$dif_partido,$conferencia]);
+        $id = $this->db->lastInsertId();
+        return $this->verEquipo($id);
+    }
   function guardarEquipo($equipo, $nom_corto, $ganados, $perdidos, $porcentaje, $dif_partido, $conferencia,$rutaTempImagenes){
     $sentencia = $this->db->prepare('INSERT INTO equipo(equipo,nom_corto,ganados,perdidos,porcentaje,dif_partido,conferencia) VALUES(?,?,?,?,?,?,?)');
     $sentencia->execute([$equipo,$nom_corto,$ganados,$perdidos,$porcentaje,$dif_partido,$conferencia]);

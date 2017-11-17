@@ -85,10 +85,10 @@
                     <input type="file" id="ima" name="ima[]" multiple>
                 </div>
                 <div class="form-group">
-                    <label for="usuario">{$sesion}</label>
+
 
                 </div>
-                <div class="g-recaptcha" data-sitekey="6Lc7yjgUAAAAAIFjl2fi8bzrJxA7lvcMcBu2ewCd"></div>
+
                 <button type="submit" class="btn btn-default">Crear</button>
 
             </form>

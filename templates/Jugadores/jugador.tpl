@@ -25,7 +25,7 @@
       <td class="camiseta">{$jugadores['id']}</td>
       <td>{$jugadores['equipo']}</td>
       <td>{$jugadores['numero']}</td>
-      <td><a class="partial" href="api/comentario/{$jugadores['id']}"</a> {$jugadores['nombre']}, {$jugadores['apellido']} <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></td>
+      <td> {$jugadores['nombre']}, {$jugadores['apellido']}</td>
       <td>{$jugadores['posicion']}</td>
       <td>{$jugadores['edad']}</td>
       <td>{$jugadores['altura']}</td>

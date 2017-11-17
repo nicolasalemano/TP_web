@@ -6,7 +6,7 @@ include_once 'config/Router.php';
 include_once '../model/Model.php';
 include_once 'controller/EquipoApiController.php';
 include_once 'controller/ComentarioApiController.php';
-include_once '../controller/SecuredController.php';
+//include_once '../controller/SecuredController.php';
 include_once '../controller/Controller.php';
 
 $router = new Router();
@@ -21,6 +21,8 @@ $router->AddRoute("equipo/:conf", "GET", "EquipoApiController", "getApiConferenc
 $router->AddRoute("comentario", "GET", "ComentarioApiController", "getCommentApiEquipos");
 $router->AddRoute("comentario/:id", "GET", "ComentarioApiController", "getCommentApiEquipo");
 $router->AddRoute("comentario", "POST", "ComentarioApiController", "createCommentApiEquipo");
+//$router->AddRoute("comentario", "POST", "ComentarioApiController", "createCommentApiEquipoSinReCap");
+
 $router->AddRoute("comentario/:id", "DELETE", "ComentarioApiController", "deleteCommentApiEquipo");
 $router->AddRoute("comentario/:id", "PUT", "ComentarioApiController", "editCommentApiEquipo");
 
@@ -28,7 +30,7 @@ $route = $_GET['resource'];
 $array = $router->Route($route);
 
 if(sizeof($array) == 0)
-    echo "404";
+    echo "404 sin datos";
 else
 {
     $controller = $array[0];
